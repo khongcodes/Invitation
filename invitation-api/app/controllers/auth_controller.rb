@@ -1,4 +1,4 @@
-class Api::V1::AuthController < ApplicationController
+class AuthController < ApplicationController
   def create
     @user = User.find_by(username: user_login_params[:username])
     # returns nil if no user found
@@ -15,7 +15,6 @@ class Api::V1::AuthController < ApplicationController
   private
 
   def user_login_params
-    # params {user: {username: 'Chandler', password: 'password'}}
     params.require(:user).permit(:username, :password)
   end
 

@@ -1,4 +1,4 @@
-class Api::V1::EventsController < ApplicationController
+class EventsController < ApplicationController
   def create
     @event = Event.create(event_params)
     if @event.valid?
@@ -16,6 +16,6 @@ class Api::V1::EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:title, :description, :location, :time, :date :user_id)
+    params.require(:event).permit(:title, :description, :location, :time, :date, :user_id)
   end
 end
