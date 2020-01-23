@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
+import { addEvent } from '../actions/eventActions';
 import EventForm from './EventForm';
 import '../style/EventForm.css'
 
@@ -18,10 +20,14 @@ class EventFormContainer extends Component {
     })
   }
 
+  pushHistory = eventResource => {
+    this.props.history.push(`/event/${eventResource.id}`)
+  }
+
   handleSubmit = event => {
     event.preventDefault();
     console.log(this.state);
-    // submit event to database
+    this.props.addEvent(this.state, this.pushHistory)
     // link into event route
   }
   
@@ -39,4 +45,12 @@ class EventFormContainer extends Component {
   }
 }
 
-export default EventFormContainer
+const mapStateToProps = state => ({
+  event: state.event
+})
+
+const mapDispatchToProps = dispatch => ({
+  addEvent: (event, callback) => dispatch(addEvent(event, callback))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(EventFormContainer)
