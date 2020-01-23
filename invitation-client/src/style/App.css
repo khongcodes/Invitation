@@ -1,8 +1,10 @@
-/* .App {
-  text-align: center;
+.App.body-container{
+  width: 98vw;
+  margin: 0 auto;
+  background-color: pink;
 }
 
-.App-logo {
+/* .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
@@ -36,7 +38,3 @@
     transform: rotate(360deg);
   }
 } */
-
-.EventForm {
-  
-}

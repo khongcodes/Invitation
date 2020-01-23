@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import EventForm from './EventForm';
+import '../style/EventForm.css'
 
 class EventFormContainer extends Component {
   state = {
@@ -20,18 +21,20 @@ class EventFormContainer extends Component {
   handleSubmit = event => {
     event.preventDefault();
     console.log(this.state);
+    // submit event to database
+    // link into event route
   }
   
   render() {
     return (
-      <>
-        <h2>Create an event.</h2>
-        <EventForm 
-          formData = {this.state}
-          handleChange = {this.handleChange}
-          handleSubmit = {this.handleSubmit}
-        />
-      </>
+      <div className='EventFormContainer'>
+        <h2 className='EventForm header'>Create an event.</h2>
+          <EventForm 
+            formData = {this.state}
+            handleChange = {this.handleChange}
+            handleSubmit = {this.handleSubmit}
+          />
+      </div>
     )
   }
 }
