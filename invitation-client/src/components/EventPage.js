@@ -19,8 +19,10 @@ class EventPage extends Component {
 
   render() {
     return (
-      this.props.event.data===undefined ?
-      <h2>Event not found</h2>
+      this.props.event.status==='no match' ?
+      <>
+        <h2>Event {this.props.match.params.id} not found</h2>
+      </>
       :
       <div>
         <p>Event {this.props.match.params.id}</p>
