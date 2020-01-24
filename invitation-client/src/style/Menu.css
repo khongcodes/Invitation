@@ -1,0 +1,23 @@
+.Menu.icon {
+  position: absolute;
+  right: 1vw;
+  top: 0.5vw;
+}
+
+.Menu.icon .icon-bar {
+  width: 1.8em;
+  height: 0.25em;
+  background-color: rgb(194, 194, 194);
+  margin: 0.25em 0;
+  border-radius: 12%;
+  transition: 0.2s ease;
+}
+
+.Menu.icon:hover {
+  cursor: pointer;
+}
+
+.Menu.icon:hover .icon-bar{
+  background-color: rgb(167, 167, 167);
+  transition: 0.2s ease;
+}

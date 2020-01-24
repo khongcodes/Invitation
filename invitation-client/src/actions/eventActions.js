@@ -16,9 +16,7 @@ export const addEvent = (event, pushHistory) => (
   dispatch => {
     fetch('http://localhost:3001/events', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
+      headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({event})
     })
     .then(resp => resp.json())

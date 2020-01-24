@@ -13,6 +13,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     # options = {}
+    # does current_user match this user_id
+    # if not logged_in show false
     render json: {user: UserSerializer.new(@user)}, status: :accepted
   end
 

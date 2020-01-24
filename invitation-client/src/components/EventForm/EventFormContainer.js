@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { addEvent } from '../actions/eventActions';
+import { addEvent } from '../../actions/eventActions';
 import EventForm from './EventForm';
-import '../style/EventForm.css'
+import '../../style/EventForm.css'
 
 class EventFormContainer extends Component {
   state = {

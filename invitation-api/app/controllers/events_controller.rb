@@ -10,6 +10,8 @@ class EventsController < ApplicationController
   
   def show
     @event = Event.find(params[:id])
+    # does current_user match this event's user_id
+    # if not logged_in show false
     render json: {event: EventSerializer.new(@event)}, status: :accepted
   end
 

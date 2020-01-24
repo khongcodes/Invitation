@@ -26,8 +26,9 @@ class ApplicationController < ActionController::API
       # decoded_token = [{"user_id" => 2}, {"alg" => "HS256"}]
       # or nil if decode fails
       user_id = decoded_token[0]['user_id']
-      @user = User.find_by(id: user_id)
+      user = User.find_by(id: user_id)
     end
+    return user||nil
   end
 
   def logged_in?

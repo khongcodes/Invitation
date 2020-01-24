@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { getEvent } from '../actions/eventActions';
+import { getEvent } from '../../actions/eventActions';
 
-class EventPage extends Component {
+class EventPageContainer extends Component {
 
   // only load event to Redux store if not already loaded during event creation
   componentDidMount() {
@@ -41,4 +41,4 @@ const mapDispatchToProps = dispatch => ({
   getEvent: (id) => dispatch(getEvent(id))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(EventPage)
+export default connect(mapStateToProps, mapDispatchToProps)(EventPageContainer)
