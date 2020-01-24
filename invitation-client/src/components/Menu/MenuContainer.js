@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 
+import ActiveMenu from './ActiveMenu'
 import '../../style/Menu.css'
 
 class MenuContainer extends Component {
@@ -20,7 +21,7 @@ class MenuContainer extends Component {
       <>
         <MenuIcon toggleMenu={this.toggleMenu} />
         {this.state.menuActive ?
-          <ActiveMenu user={this.props.user}/>
+          <ActiveMenu user={this.props.user} toggleMenu={this.toggleMenu}/>
         :
         <></>}
       </>
@@ -34,13 +35,6 @@ const MenuIcon = ({ toggleMenu }) => (
     <div className='Menu icon-bar'></div>
     <div className='Menu icon-bar'></div>
   </div>
-)
-
-const ActiveMenu = ({user}) => (
-  Object.entries(user).length===0 ?
-    <div>no user</div>
-  :
-    <div>user</div>
 )
 
 export default MenuContainer

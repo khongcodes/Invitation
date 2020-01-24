@@ -1,7 +1,7 @@
 .Menu.icon {
   position: absolute;
   right: 1vw;
-  top: 0.5vw;
+  top: 0.5em;
 }
 
 .Menu.icon .icon-bar {
@@ -19,5 +19,13 @@
 
 .Menu.icon:hover .icon-bar, .Menu.icon:focus .icon-bar{
   background-color: rgb(167, 167, 167);
+  transition: 0.2s ease;
+}
+
+.ActiveMenu.container {
+  position: absolute;
+  right: 1vw;
+  top: 2.75em;
+  background-color: orange;
   transition: 0.2s ease;
 }
