@@ -21,7 +21,7 @@ class App extends Component {
     return (
       <div className='App body-container'>
         <Router>
-          <MenuContainer user={this.props.user.data}/>
+          <MenuContainer user={this.props.user.data} login={this.props.login} logout={this.props.logout}/>
 
           <Route exact path='/'>
             <Redirect to='/create'/>

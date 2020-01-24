@@ -26,6 +26,39 @@
   position: absolute;
   right: 1vw;
   top: 2.75em;
-  background-color: orange;
+  background-color: rgb(235, 235, 235);
+  border-radius: 0.5em;
+  width: 11em;
+  padding: 0.8em;
   transition: 0.2s ease;
+}
+
+.ActiveMenuItem {
+  display: inline-block;
+  margin-bottom: 0.7em;
+}
+
+.ActiveMenuItem:nth-of-type(2) {
+  margin-bottom: 0.9em;
+}
+
+.ActiveMenu form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.1em;
+}
+
+.ActiveMenu form label {
+  margin: 0.16em 0;
+  font-size: 0.75em;
+}
+
+.ActiveMenu input[type='text'], .ActiveMenu input[type='password'] {
+  margin-top: 0.1em;
+  width: 80%;
+}
+
+.ActiveMenu form input[type='submit'] {
+  margin-top: 0.6em;
+  width: 40%;
 }
