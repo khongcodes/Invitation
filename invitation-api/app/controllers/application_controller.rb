@@ -1,44 +1,36 @@
 class ApplicationController < ActionController::API
-  # before_action :authorized
+  include ActionController::Cookies
+  include ActionController::RequestForgeryProtection
 
-  def encode_token(payload)
-    JWT.encode(payload, 'my_s3cr3t')
-  end
+  protect_from_forgery with: :exception
+  before_action :set_csrf_cookie
 
-  def auth_header
-    # {'Authorization': 'Bearer <token>'}
-    request.headers['Authorization']
-  end
+  helper_method :login, :logged_in?, :current_user, :authorized_user?, :logout
 
-  def decoded_token
-    if auth_header
-      token = auth_header.split(' ')[1]
-      begin
-        JWT.decode(token, 'my_s3cr3t', true, algorithm: 'HS256')
-      rescue JWT::DecodeError
-        nil
-      end
-    end
-  end
-
-  def current_user
-    if decoded_token
-      # decoded_token = [{"user_id" => 2}, {"alg" => "HS256"}]
-      # or nil if decode fails
-      user_id = decoded_token[0]['user_id']
-      user = User.find_by(id: user_id)
-    end
-    return user||nil
+  def login
+    session[:user_id] = @user.id
   end
 
   def logged_in?
-    !!current_user
+    !!session[:user_id]
   end
 
-  # move this to user controller? to prevent user from editing other user
-  # prevent user from editing another user's event
-  def authorized
-    render json: {message: 'Please log in'}, status: :unauthorized unless logged_in?
+  def current_user
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+  end
+
+  def authorized_user?
+    @user == current_user
+  end
+
+  def logout
+    session.clear
+  end
+
+  private
+
+  def set_csrf_cookie
+    cookies['CSRF-TOKEN'] = form_authenticity_token
   end
 
 end
