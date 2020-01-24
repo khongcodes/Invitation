@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import axios from 'axios'
 
 import { login, logout, loginStatus } from './actions/userActions'
 
@@ -12,6 +11,10 @@ import EventPageContainer from './components/EventPage/EventPageContainer';
 import './style/App.css';
 
 class App extends Component {
+  componentDidMount() {
+    this.props.loginStatus()
+  }
+
   render() {
     return (
       <div className='App body-container'>

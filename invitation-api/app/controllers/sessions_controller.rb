@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
 
   def is_logged_in?
     if logged_in? && current_user
-      render json: {user: current_user, logged_in: true}
+      render json: {user: UserSerializer.new(current_user), logged_in: true}
     else
       render json: {message: 'no such user', logged_in: false}
     end

@@ -3,13 +3,25 @@ export default (state={
   status: 'success',
 }, action) => {
   switch (action.type) {
-    case "LOGGING IN":
+    case "LOGGED_IN":
+      return {
+        data: action.payload.user,
+        status: `user ${action.payload.user.id}`
+      };
+
+    case "NOT_LOGGED_IN":
+      return {
+        data: {},
+        status: 'no current user'
+      };
+
+    case "LOGGING_IN":
       return {
         data: {},
         status: 'logging in',
       };
-
-    case "LOGGING OUT":
+      
+    case "LOGGING_OUT":
       return {
         ...state,
         status: 'logging out'
