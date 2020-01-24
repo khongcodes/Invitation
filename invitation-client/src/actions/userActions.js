@@ -20,17 +20,35 @@ export const loginStatus = () => (
 
 export const login = (username, password) => (
   dispatch => {
+    const user = {username, password};
     dispatch({type: 'LOGGING_IN'});
-    fetch('http://localhost:3001/login', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({username, password})
+    axios.post('http://localhost:3001/login', {user})
+    .then(response => {
+      if (response.data.logged_in) {
+        dispatch({type: 'LOGGED_IN', payload: response.data});
+        window.location.reload();
+      } else {
+        console.log(response.data.message)
+        dispatch({type: 'LOGIN_ERROR', payload: response.data});
+      }
     })
+    .catch(error => console.log('api errors:', error))
   }
 )
 
 export const logout = () => (
   dispatch => {
-    dispatch({type: 'LOGGING OUT'});
+    dispatch({type: 'LOGGING_OUT'});
+    axios.delete('http://localhost:3001/logout')
+    .then(response => {
+      dispatch({type: 'NOT_LOGGED_IN'});
+      window.location.reload();
+    })
+  }
+)
+
+export const createUser = () => (
+  dispatch => {
+    axios.post('http://localhost:3001/users')
   }
 )

@@ -17,7 +17,7 @@
   cursor: pointer;
 }
 
-.Menu.icon:hover .icon-bar{
+.Menu.icon:hover .icon-bar, .Menu.icon:focus .icon-bar{
   background-color: rgb(167, 167, 167);
   transition: 0.2s ease;
 }

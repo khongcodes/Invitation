@@ -20,11 +20,17 @@ export default (state={
         data: {},
         status: 'logging in',
       };
-      
+
     case "LOGGING_OUT":
       return {
         ...state,
         status: 'logging out'
+      }
+
+    case "LOGIN_ERROR":
+      return {
+        data: {},
+        status: action.payload.message
       }
 
     default:

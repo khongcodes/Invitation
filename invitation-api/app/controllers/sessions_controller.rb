@@ -6,9 +6,9 @@ class SessionsController < ApplicationController
 
     if @user && @user.authenticate(session_params[:password])
       login
-      render json: {user: UserSerializer.new(@user)}, status: :accepted
+      render json: {user: UserSerializer.new(@user), logged_in: true}, status: :accepted
     else
-      render json: {message: 'Invalid username or password'}
+      render json: {message: 'Invalid username or password'}, status: 401
     end
   end
 
@@ -22,10 +22,7 @@ class SessionsController < ApplicationController
 
   def destroy
     logout
-    render json: {
-      status: 200,
-      logged_out: true
-    }
+    render json: {logged_out: true, status: 200}
   end
 
   private

@@ -18,9 +18,8 @@ class App extends Component {
   render() {
     return (
       <div className='App body-container'>
-        <button onClick={this.props.loginStatus}/>
         <Router>
-          <MenuContainer />
+          <MenuContainer user={this.props.user.data}/>
           <Route exact path='/'>
             <Redirect to='/create'/>
           </Route>

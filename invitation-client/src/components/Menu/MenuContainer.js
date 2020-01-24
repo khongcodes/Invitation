@@ -13,12 +13,17 @@ class MenuContainer extends Component {
       ...previousState,
       menuActive: !previousState.menuActive
     }))
-    console.log(this.state)
   }
 
   render() {
     return (
-      <MenuIcon toggleMenu={this.toggleMenu} />
+      <>
+        <MenuIcon toggleMenu={this.toggleMenu} />
+        {this.state.menuActive ?
+          <ActiveMenu user={this.props.user}/>
+        :
+        <></>}
+      </>
     )
   }
 }
@@ -29,6 +34,13 @@ const MenuIcon = ({ toggleMenu }) => (
     <div className='Menu icon-bar'></div>
     <div className='Menu icon-bar'></div>
   </div>
+)
+
+const ActiveMenu = ({user}) => (
+  Object.entries(user).length===0 ?
+    <div>no user</div>
+  :
+    <div>user</div>
 )
 
 export default MenuContainer
