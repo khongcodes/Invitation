@@ -11,7 +11,10 @@ export const getEvent = (id) => (
     .then(response => {
       console.log(response)
       if (response.data.event) {
-        dispatch({type: 'GET_EVENT', payload: response.data.event})
+        dispatch({type: 'GET_EVENT', payload: {
+          event: response.data.event,
+          authorize:response.data.authorize
+        }})
       } else {
         dispatch({type: 'EVENT_ERROR', payload: response.statusText})
       }
@@ -25,7 +28,10 @@ export const addEvent = (event, pushHistory) => (
     axios.post('http://localhost:3001/events', {event: event})
     .then(response => {
       if (response.data.event) {
-        dispatch({type: 'GET_EVENT', payload: response.data.event})
+        dispatch({type: 'ADD_EVENT', payload: {
+          event: response.data.event,
+          authorize: response.data.authorize
+        }})
       } else {
         dispatch({type: 'EVENT_ERROR', payload: response.data.errors})
       }
