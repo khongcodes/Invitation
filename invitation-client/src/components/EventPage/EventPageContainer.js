@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux';
 
 import { getEvent } from '../../actions/eventActions';
@@ -37,7 +38,12 @@ class EventPageContainer extends Component {
         <p>Location: {location}</p>
         <p>Time: {time}</p>
         <p>Date: {date}</p>
-        <p>User: {user}</p>
+        <p>User:{' '}
+          {!!user ? 
+            <Link to={`/user/${user.id}`}>{user.name}</Link>
+          :
+          'none'}
+        </p>
         <button onClick={this.logProps}>log props</button>
 
       </div>

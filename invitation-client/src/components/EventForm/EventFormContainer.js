@@ -21,6 +21,7 @@ class EventFormContainer extends Component {
   }
 
   pushHistory = eventResource => {
+    // console.log(eventResource)
     this.props.history.push(`/event/${eventResource.id}`)
   }
 

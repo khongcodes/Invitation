@@ -21,14 +21,14 @@ export const getEvent = (id) => (
 
 export const addEvent = (event, pushHistory) => (
   dispatch => {
-    axios.post('http://localhost:3001/events', {event})
+    axios.post('http://localhost:3001/events', {event: event})
     .then(response => {
-      if (response.event) {
+      if (response.data.event) {
         dispatch({type: 'GET_EVENT', payload: response.data.event})
       } else {
         dispatch({type: 'EVENT_ERROR', payload: response.data.errors})
       }
-      return response.event
+      return response.data.event
     })
     .then(event => {
       pushHistory(event)
