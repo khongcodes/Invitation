@@ -1,6 +1,6 @@
 export default (state={
   data: {},
-  status: 'success'
+  status: 'none loaded'
 }, action) => {
   switch (action.type) {
     case "GETTING_USER":
@@ -12,13 +12,19 @@ export default (state={
     case "GOT_USER":
       return {
         data: action.payload,
-        status: 'success'
-      }
+        status: 'loaded'
+      };
 
     case "USER_ERROR":
       return {
         data: action.payload,
         status: 'failure'
+      };
+
+    case "CLEAR_USER":
+      return {
+        data: {},
+        status:'cleared'
       }
     
     default:

@@ -9,6 +9,7 @@ export const getEvent = (id) => (
     dispatch({type: 'LOADING_EVENT'});
     axios.get(`http://localhost:3001/events/${id}`)
     .then(response => {
+      console.log(response)
       if (response.data.event) {
         dispatch({type: 'GET_EVENT', payload: response.data.event})
       } else {
@@ -34,5 +35,11 @@ export const addEvent = (event, pushHistory) => (
       pushHistory(event)
     })
     .catch(() => dispatch({type: 'EVENT_ERROR', payload:'failed to create event'}))
+  }
+)
+
+export const clearEvent = () => (
+  dispatch => {
+    dispatch({type:'CLEAR_EVENT'})
   }
 )

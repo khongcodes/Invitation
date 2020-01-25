@@ -1,6 +1,6 @@
 export default (state={
   data: {},
-  status: 'success',
+  status: 'none loaded',
   loading: false
 }, action) => {
   switch (action.type) {
@@ -32,6 +32,13 @@ export default (state={
         status: action.payload || 'error',
         loading: false
       };
+    
+      case "CLEAR_EVENT":
+        return {
+          data: {},
+          status: 'cleared',
+          loading: false
+        }
 
     default:
       return state;

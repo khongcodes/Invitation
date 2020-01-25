@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux';
 
-import { getEvent } from '../../actions/eventActions';
+import { getEvent, clearEvent } from '../../actions/eventActions';
 
 class EventPageContainer extends Component {
 
@@ -16,7 +16,7 @@ class EventPageContainer extends Component {
   }
 
   componentWillUnmount() {
-    // clear redux store!!
+    this.props.clearEvent();
   }
 
   logProps = () => {
@@ -60,7 +60,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  getEvent: (id) => dispatch(getEvent(id))
+  getEvent: (id) => dispatch(getEvent(id)),
+  clearEvent: () => dispatch(clearEvent())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(EventPageContainer)

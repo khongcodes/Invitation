@@ -28,3 +28,9 @@ export const getUser = (id) => (
     .catch(() => dispatch({type: 'USER_ERROR', payload: {message:'User not found.'}}))
   }
 )
+
+export const clearUser = () => (
+  dispatch => {
+    dispatch({type:'CLEAR_USER'})
+  }
+)

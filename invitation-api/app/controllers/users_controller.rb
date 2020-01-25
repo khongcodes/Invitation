@@ -5,7 +5,7 @@ class UsersController < ApplicationController
     
     # set default image if none provided
     if @user.img_url.empty?
-      @user.update(img_url: 'https://i.kym-cdn.com/entries/icons/original/000/013/564/doge.jpg')
+      @user.update(img_url: 'https://i.imgflip.com/db5xf.jpg')
     end
 
     if @user.valid?

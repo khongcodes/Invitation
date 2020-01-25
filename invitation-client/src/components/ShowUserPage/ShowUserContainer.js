@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { getUser } from '../../actions/userActions';
+import { getUser, clearUser } from '../../actions/userActions';
 
 class ShowUserContainer extends Component {
   componentDidMount() {
@@ -9,12 +10,26 @@ class ShowUserContainer extends Component {
   }
 
   componentWillUnmount() {
-    // clear redux store!!
+    this.props.clearUser();
+  }
+
+  renderEvents = events => {
+    if (events) {
+      return (
+        <ul>
+          {events.map(event => (
+            <li key={event.id}><Link to={`/event/${event.id}`} >
+              {event.title}
+            </Link></li>
+          ))}
+        </ul>
+      )
+    }
   }
 
   render() {
     const status = this.props.user.status;
-    const {message, id, username, name, bio, img_url} = this.props.user.data;
+    const {message, id, username, name, bio, img_url, events} = this.props.user.data;
 
     return (
       status === 'failure' ?
@@ -26,6 +41,8 @@ class ShowUserContainer extends Component {
           <p>Name: {name}</p>
           <p>Image: {img_url}</p>
           <p>Bio: {bio}</p>
+          {this.renderEvents(events)}
+
         </div>
     )
   }
@@ -34,7 +51,8 @@ class ShowUserContainer extends Component {
 const mapStateToProps = ({user}) => ({user})
 
 const mapDispatchToProps = dispatch => ({
-  getUser: id => dispatch(getUser(id))
+  getUser: id => dispatch(getUser(id)),
+  clearUser: () => dispatch(clearUser())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ShowUserContainer)
