@@ -21,9 +21,13 @@ export const createUser = (userParams) => (
 
 export const getUser = (id) => (
   dispatch => {
+    dispatch({type: 'GETTING_USER'})
     axios.get(`http://localhost:3001/users/${id}`)
     .then(response => {
-      dispatch({type:'GOT_USER', payload: response.data.user})
+      dispatch({type:'GOT_USER', payload: {
+        user: response.data.user,
+        authorize: response.data.authorize
+      }})
     })
     .catch(() => dispatch({type: 'USER_ERROR', payload: {message:'User not found.'}}))
   }
