@@ -15,6 +15,10 @@ class EventPageContainer extends Component {
     }
   }
 
+  componentWillUnmount() {
+    // clear redux store!!
+  }
+
   logProps = () => {
     console.log(this.props.event.data)
   }

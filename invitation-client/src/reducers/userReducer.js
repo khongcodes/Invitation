@@ -15,9 +15,9 @@ export default (state={
         status: 'success'
       }
 
-    case "GET_USER_ERROR":
+    case "USER_ERROR":
       return {
-        data: {},
+        data: action.payload,
         status: 'failure'
       }
     

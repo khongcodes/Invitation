@@ -15,7 +15,7 @@ export const createUser = (userParams) => (
         dispatch({type: 'LOGIN_ERROR', payload: response.data});
       }
     })
-    .catch(() => dispatch({type: 'USER_ERROR', payload: 'Unauthorized'}))
+    .catch(() => dispatch({type: 'USER_ERROR', payload: {message:'User could not be created.'}}))
   }
 )
 
@@ -23,8 +23,8 @@ export const getUser = (id) => (
   dispatch => {
     axios.get(`http://localhost:3001/users/${id}`)
     .then(response => {
-      console.log(response)
+      dispatch({type:'GOT_USER', payload: response.data.user})
     })
-    .catch(() => dispatch({type: 'USER_ERROR', payload: 'Unauthorized'}))
+    .catch(() => dispatch({type: 'USER_ERROR', payload: {message:'User not found.'}}))
   }
 )

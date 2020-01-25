@@ -2,6 +2,12 @@ class UsersController < ApplicationController
   
   def create
     @user = User.create(user_params)
+    
+    # set default image if none provided
+    if @user.img_url.empty?
+      @user.update(img_url: 'https://i.kym-cdn.com/entries/icons/original/000/013/564/doge.jpg')
+    end
+
     if @user.valid?
       login
       # @token = encode_token(user_id: @user.id)
