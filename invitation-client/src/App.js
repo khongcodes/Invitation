@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { login, logout, loginStatus } from './actions/userActions'
+import { login, logout, loginStatus } from './actions/sessionActions'
 
 import MenuContainer from './components/Menu/MenuContainer';
 import EventFormContainer from './components/EventForm/EventFormContainer';
@@ -18,18 +18,18 @@ class App extends Component {
   }
 
   render() {
-    const userIsLoaded = Object.entries(this.props.user.data).length === 0;
+    const userIsLoaded = Object.entries(this.props.session.data).length === 0;
 
     return (
       <div className='App body-container'>
         <Router>
-          <MenuContainer user={this.props.user} login={this.props.login} logout={this.props.logout}/>
+          <MenuContainer sessionUser={this.props.session} login={this.props.login} logout={this.props.logout}/>
 
           <Route exact path='/'>
             <Redirect to='/create'/>
           </Route>
 
-          <Route path='/create' render={routerProps => <EventFormContainer {...routerProps} user={this.props.user}/>} />
+          <Route path='/create' render={routerProps => <EventFormContainer {...routerProps} sessionUser={this.props.session}/>} />
           <Route path='/event/:id' component={EventPageContainer} />
           
           <Switch>
@@ -49,7 +49,7 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = ({user}) => ({user})
+const mapStateToProps = ({session}) => ({session})
 
 const mapDispatchToProps = dispatch => ({
   login: userParams => dispatch(login(userParams)),

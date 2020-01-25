@@ -21,7 +21,6 @@ class EventFormContainer extends Component {
   }
 
   pushHistory = eventResource => {
-    // console.log(eventResource)
     this.props.history.push(`/event/${eventResource.id}`)
   }
 
@@ -30,7 +29,7 @@ class EventFormContainer extends Component {
     console.log(this.state);
     this.props.addEvent({
       ...this.state,
-      user_id: this.props.user.data.id
+      user_id: this.props.sessionUser.data.id
     }, this.pushHistory)
     // link into event route
   }
