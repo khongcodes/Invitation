@@ -33,6 +33,12 @@ export default (state={
         status: action.payload.message
       }
 
+    case "CREATING_USER":
+      return {
+        ...state,
+        status: 'creating user'
+      }
+
     default:
       return state;
   }

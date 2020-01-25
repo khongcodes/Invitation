@@ -1,7 +1,7 @@
 import React from 'react'
 
 const EventForm = ({formData, handleChange, handleSubmit}) => (
-  <form className='EventForm' onSubmit={event => handleSubmit(event)} >
+  <form className='Form' onSubmit={event => handleSubmit(event)} >
     <label>What is the name of this event? <br/>
       <input 
         name = 'title'

@@ -21,7 +21,12 @@ class MenuContainer extends Component {
       <>
         <MenuIcon toggleMenu={this.toggleMenu} />
         {this.state.menuActive ?
-          <ActiveMenu user={this.props.user} toggleMenu={this.toggleMenu}/>
+          <ActiveMenu 
+            user = {this.props.user}
+            toggleMenu = {this.toggleMenu}
+            login = {this.props.login}
+            logout = {this.props.logout}
+          />
         :
         <></>}
       </>

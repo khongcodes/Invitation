@@ -1,4 +1,4 @@
-.EventFormContainer {
+.FormContainer {
   background-color: rgb(236, 236, 236);
   position: absolute;
   top: 20%;
@@ -9,25 +9,25 @@
   border-radius: 2%;
 }
 
-.EventForm {
+.Form {
   margin: auto;
   /* background-color: rgb(179, 179, 243); */
   display: flex;
   flex-direction: column;
 }
 
-.EventForm.header {
+.Form.header {
   margin-bottom: 0.6em;
 }
 
-.EventForm input {
+.Form input {
   margin: 0.3em 0 1.2em;
   height: 1.5em;
   width: 80%;
   padding-left: 0.3em;
 }
 
-.EventForm textarea {
+.Form textarea {
   margin: 0.3em 0 1.2em;
   width: 80%;
   height: 6em;
@@ -36,6 +36,15 @@
   border: 0.5px solid rgb(214, 214, 214);
 }
 
-.EventForm input[type='submit'] {
+.Form input[type='submit'] {
   width: 20%;
+  margin: 1em 0 0.6em;
+}
+
+.Form hr {
+  border-top: 1px solid rgb(206, 206, 206);
+  border-left: none;
+  text-align: center;
+  width: 100%;
+  margin: 0.5em 0 1.5em;
 }

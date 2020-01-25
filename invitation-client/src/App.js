@@ -18,10 +18,12 @@ class App extends Component {
   }
 
   render() {
+    const userIsLoaded = Object.entries(this.props.user.data).length === 0;
+
     return (
       <div className='App body-container'>
         <Router>
-          <MenuContainer user={this.props.user.data} login={this.props.login} logout={this.props.logout}/>
+          <MenuContainer user={this.props.user} login={this.props.login} logout={this.props.logout}/>
 
           <Route exact path='/'>
             <Redirect to='/create'/>
@@ -31,7 +33,14 @@ class App extends Component {
           <Route path='/event/:id' component={EventPageContainer} />
           
           <Switch>
-            <Route path='/user/create' component={CreateUserContainer} />
+            <Route path='/user/create'>
+              {userIsLoaded ? 
+                <CreateUserContainer />
+              :
+                <Redirect to='/create' />
+              }
+            </Route>
+
             <Route path='/user/:id' component={ShowUserContainer} />
           </Switch>
         </Router>
@@ -43,7 +52,7 @@ class App extends Component {
 const mapStateToProps = ({user}) => ({user})
 
 const mapDispatchToProps = dispatch => ({
-  login: () => dispatch(login()),
+  login: userParams => dispatch(login(userParams)),
   logout: () => dispatch(logout()),
   loginStatus: () => dispatch(loginStatus())
 })

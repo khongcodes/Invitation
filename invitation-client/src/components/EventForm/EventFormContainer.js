@@ -33,8 +33,8 @@ class EventFormContainer extends Component {
   
   render() {
     return (
-      <div className='EventFormContainer'>
-        <h2 className='EventForm header'>Create an event.</h2>
+      <div className='FormContainer'>
+        <h2 className='Form header'>Create an event.</h2>
           <EventForm 
             formData = {this.state}
             handleChange = {this.handleChange}

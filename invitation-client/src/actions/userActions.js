@@ -18,11 +18,10 @@ export const loginStatus = () => (
   }
 )
 
-export const login = (username, password) => (
+export const login = (userParams) => (
   dispatch => {
-    const user = {username, password};
     dispatch({type: 'LOGGING_IN'});
-    axios.post('http://localhost:3001/login', {user})
+    axios.post('http://localhost:3001/login', {user: userParams})
     .then(response => {
       if (response.data.logged_in) {
         dispatch({type: 'LOGGED_IN', payload: response.data});
@@ -32,7 +31,7 @@ export const login = (username, password) => (
         dispatch({type: 'LOGIN_ERROR', payload: response.data});
       }
     })
-    .catch(error => console.log('api errors:', error))
+    .catch(() => dispatch({type: 'LOGIN_ERROR', payload: {message:'Unauthorized'}}))
   }
 )
 
@@ -47,8 +46,17 @@ export const logout = () => (
   }
 )
 
-export const createUser = () => (
+export const createUser = (userParams) => (
   dispatch => {
-    axios.post('http://localhost:3001/users')
+    axios.post('http://localhost:3001/users', {user: userParams})
+    .then(response => {
+      if (response.statusText === 'Created') {
+        dispatch({type: 'LOGGED_IN', payload: response.data})
+        window.location.reload();
+      } else {
+        console.log(response.data.message)
+        dispatch({type: 'LOGIN_ERROR', payload: response.data});
+      }
+    })
   }
 )
