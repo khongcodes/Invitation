@@ -32,8 +32,7 @@ class EventPageContainer extends Component {
         <button onClick={this.logProps}/>
       </>
       :
-      <div>
-        <p>Event {id}</p>
+      <>
         <h2>{title}</h2>
         <p>Description:<br/>
           {description}
@@ -49,7 +48,7 @@ class EventPageContainer extends Component {
         </p>
         <button onClick={this.logProps}>log props</button>
 
-      </div>
+      </>
     )
   }
 }

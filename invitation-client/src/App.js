@@ -21,30 +21,42 @@ class App extends Component {
     const userIsLoaded = Object.entries(this.props.session.data).length === 0;
 
     return (
-      <div className='App body-container'>
-        <Router>
-          <MenuContainer sessionUser={this.props.session} login={this.props.login} logout={this.props.logout}/>
+      <Router>
+        <MenuContainer sessionUser={this.props.session} login={this.props.login} logout={this.props.logout}/>
 
-          <Route exact path='/'>
-            <Redirect to='/create'/>
-          </Route>
+        <div className='App body-container'>
 
-          <Route path='/create' render={routerProps => <EventFormContainer {...routerProps} sessionUser={this.props.session}/>} />
-          <Route path='/event/:id' component={EventPageContainer} />
-          
-          {/* prevent user/create from routing user/id */}
-          <Switch>
+          <div className='App section left'>
+            <Route path='/event/:id' render={routerProps => <div>{this.props.session.data.name}</div>}/>
+          </div>
 
-            {/* redirect user away from create user if they are logged in */}
-            <Route path='/user/create'>
-              {userIsLoaded ? <CreateUserContainer /> : <Redirect to='/create' />}
+          <div className='App center'>
+            <Route exact path='/'>
+              <Redirect to='/create'/>
             </Route>
 
-            <Route path='/user/:id' component={ShowUserContainer} />
+            <Route path='/create' render={routerProps => <EventFormContainer {...routerProps} sessionUser={this.props.session}/>} />
+            <Route path='/event/:id' component={EventPageContainer} />
             
-          </Switch>
-        </Router>
-      </div>
+            {/* prevent user/create from routing user/id */}
+            <Switch>
+
+              {/* redirect user away from create user if they are logged in */}
+              <Route path='/user/create'>
+                {userIsLoaded ? <CreateUserContainer /> : <Redirect to='/create' />}
+              </Route>
+
+              <Route path='/user/:id' component={ShowUserContainer} />
+              
+            </Switch>
+          </div>
+
+          <div className='App section right'>
+            <Route path='/event/:id' render={routerProps => <div>{this.props.session.data.name}</div>}/>
+          </div>
+          
+        </div>
+      </Router>
     )
   }
 }

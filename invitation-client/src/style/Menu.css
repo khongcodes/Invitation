@@ -2,6 +2,7 @@
   position: absolute;
   right: 1vw;
   top: 0.5em;
+  z-index: 2;
 }
 
 .Menu.icon .icon-bar {
@@ -31,6 +32,7 @@
   width: 11em;
   padding: 0.8em;
   transition: 0.2s ease;
+  z-index: 2;
 }
 
 .ActiveMenuItem {

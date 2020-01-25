@@ -36,7 +36,7 @@ class ShowUserContainer extends Component {
       status === 'failure' ?
         <h2>{message}</h2>
       :
-        <div>
+        <>
           show user {id}
           <p>Username: {username}</p>
           <p>Name: {name}</p>
@@ -44,7 +44,7 @@ class ShowUserContainer extends Component {
           <p>Bio: {bio}</p>
           {this.renderEvents(events)}
 
-        </div>
+        </>
     )
   }
 }

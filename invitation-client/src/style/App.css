@@ -3,9 +3,26 @@
   left: 0.5vw;
   top: 0.5vw;
   width: 99vw;
+  height: 98%;
   margin: 0 auto;
   background-color: pink;
+  display: flex;
+
 }
+
+.App.center {
+  width: 50%;
+  box-sizing: border-box;
+  padding: 1em 2.5em;
+}
+
+.App.section {
+  width: 25%;
+  background-color: rgb(250, 224, 228);
+  box-sizing: border-box;
+  padding: 1em;
+}
+
 
 /* .App-logo {
   height: 40vmin;
