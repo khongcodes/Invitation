@@ -6,6 +6,7 @@ import { getEvent } from '../../actions/eventActions';
 class EventPageContainer extends Component {
 
   // only load event to Redux store if not already loaded during event creation
+  
   componentDidMount() {
     if (Object.entries(this.props.event.data).length === 0) {
       const eventId = parseInt(this.props.match.params.id, 10);
@@ -14,19 +15,30 @@ class EventPageContainer extends Component {
   }
 
   logProps = () => {
-    console.log(this.props)
+    console.log(this.props.event.data)
   }
 
   render() {
+    const {title, description, location, time, date, id, user} = this.props.event.data;
+    
     return (
-      this.props.event.status==='no match' ?
+      Object.entries(this.props.event.data).length === 0 ?
       <>
         <h2>Event {this.props.match.params.id} not found</h2>
+        <button onClick={this.logProps}/>
       </>
       :
       <div>
-        <p>Event {this.props.match.params.id}</p>
-        <h2>{this.props.event.data.title}</h2>
+        <p>Event {id}</p>
+        <h2>{title}</h2>
+        <p>Description:<br/>
+          {description}
+        </p>
+        <p>Location: {location}</p>
+        <p>Time: {time}</p>
+        <p>Date: {date}</p>
+        <p>User: {user}</p>
+        <button onClick={this.logProps}>log props</button>
 
       </div>
     )

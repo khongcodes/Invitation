@@ -1,7 +1,7 @@
 .FormContainer {
   background-color: rgb(236, 236, 236);
-  position: absolute;
-  top: 20%;
+  position: relative;
+  margin-top: 100px;
   left: 34%;
   width: 30em;
   /* height: 10em; */

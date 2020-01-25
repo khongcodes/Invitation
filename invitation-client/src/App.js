@@ -29,7 +29,7 @@ class App extends Component {
             <Redirect to='/create'/>
           </Route>
 
-          <Route path='/create' component={EventFormContainer} />
+          <Route path='/create' render={routerProps => <EventFormContainer {...routerProps} user={this.props.user}/>} />
           <Route path='/event/:id' component={EventPageContainer} />
           
           <Switch>

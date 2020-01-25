@@ -31,7 +31,7 @@ export const login = (userParams) => (
         dispatch({type: 'LOGIN_ERROR', payload: response.data});
       }
     })
-    .catch(() => dispatch({type: 'LOGIN_ERROR', payload: {message:'Unauthorized'}}))
+    .catch(() => dispatch({type: 'LOGIN_ERROR', payload: 'Unauthorized'}))
   }
 )
 

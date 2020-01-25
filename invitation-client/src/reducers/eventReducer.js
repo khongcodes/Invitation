@@ -20,13 +20,16 @@ export default (state={
       };
 
     case "GET_EVENT":
-      return action.payload !== undefined ? {
+      return {
         data: action.payload,
         status: 'loaded',
         loading: false
-      } : {
+      };
+
+    case "EVENT_ERROR":
+      return {
         data: {},
-        status: 'no match',
+        status: action.payload || 'error',
         loading: false
       };
 

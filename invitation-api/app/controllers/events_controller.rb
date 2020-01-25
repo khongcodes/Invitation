@@ -4,7 +4,7 @@ class EventsController < ApplicationController
     if @event.valid?
       render json: {event: EventSerializer.new(@event)}, status: :created
     else
-      render json: {error: 'failed to create event'}, status: :not_accepted
+      render json: {errors: ['failed to create event']}, status: :not_accepted
     end
   end
   
@@ -12,7 +12,11 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     # does current_user match this event's user_id
     # if not logged_in show false
-    render json: {event: EventSerializer.new(@event)}, status: :accepted
+    if @event
+      render json: {event: EventSerializer.new(@event)}, status: :accepted
+    else
+      render json: {status: 500, errors: ['user not found']}
+    end
   end
 
   private

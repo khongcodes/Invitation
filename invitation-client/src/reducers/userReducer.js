@@ -30,7 +30,7 @@ export default (state={
     case "LOGIN_ERROR":
       return {
         data: {},
-        status: action.payload.message
+        status: action.payload
       }
 
     case "CREATING_USER":

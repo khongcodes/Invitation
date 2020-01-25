@@ -27,7 +27,10 @@ class EventFormContainer extends Component {
   handleSubmit = event => {
     event.preventDefault();
     console.log(this.state);
-    this.props.addEvent(this.state, this.pushHistory)
+    this.props.addEvent({
+      ...this.state,
+      user_id: this.props.user.data.id
+    }, this.pushHistory)
     // link into event route
   }
   

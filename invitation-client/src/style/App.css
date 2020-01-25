@@ -1,5 +1,8 @@
 .App.body-container{
-  width: 98vw;
+  position: absolute;
+  left: 0.5vw;
+  top: 0.5vw;
+  width: 99vw;
   margin: 0 auto;
   background-color: pink;
 }
