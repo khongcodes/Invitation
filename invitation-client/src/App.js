@@ -32,16 +32,16 @@ class App extends Component {
           <Route path='/create' render={routerProps => <EventFormContainer {...routerProps} sessionUser={this.props.session}/>} />
           <Route path='/event/:id' component={EventPageContainer} />
           
+          {/* prevent user/create from routing user/id */}
           <Switch>
+
+            {/* redirect user away from create user if they are logged in */}
             <Route path='/user/create'>
-              {userIsLoaded ? 
-                <CreateUserContainer />
-              :
-                <Redirect to='/create' />
-              }
+              {userIsLoaded ? <CreateUserContainer /> : <Redirect to='/create' />}
             </Route>
 
             <Route path='/user/:id' component={ShowUserContainer} />
+            
           </Switch>
         </Router>
       </div>

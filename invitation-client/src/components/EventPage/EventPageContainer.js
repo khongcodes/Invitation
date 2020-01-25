@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { getEvent, clearEvent } from '../../actions/eventActions';
 
 class EventPageContainer extends Component {
 
-  // only load event to Redux store if not already loaded during event creation
-  
+  // do not load event to Redux store if already loaded during event creation
   componentDidMount() {
     if (Object.entries(this.props.event.data).length === 0) {
       const eventId = parseInt(this.props.match.params.id, 10);

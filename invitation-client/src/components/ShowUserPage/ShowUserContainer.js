@@ -32,6 +32,7 @@ class ShowUserContainer extends Component {
     const {message, id, username, name, bio, img_url, events} = this.props.user.data;
 
     return (
+      // if user not found display failure
       status === 'failure' ?
         <h2>{message}</h2>
       :

@@ -12,11 +12,13 @@ const ActiveMenu = ({sessionUser, toggleMenu, login, logout}) => {
 
       {userLoggedIn ? 
         <>
+          {/* user NOT logged in - Create User and Log In */}
           <MakeLink url='/user/create' text='Create User' fn={toggleMenu} /><br />
           <LogInForm login={login} sessionUser={sessionUser} />
         </>
       :
         <>
+          {/* user logged in - own User Page and Log Out */}
           <MakeLink url={`/user/${sessionUser.data.id}`} text={sessionUser.data.name} fn={toggleMenu} /><br />
           <button onClick={logout}>Log Out</button>
         </>
@@ -31,6 +33,7 @@ const MakeLink = ({url, text, fn}) => (
   </Link>
 )
 
+// controlled form with hooks
 const LogInForm = ({login, sessionUser}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');

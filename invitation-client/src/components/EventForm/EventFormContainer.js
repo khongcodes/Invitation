@@ -5,6 +5,7 @@ import { addEvent } from '../../actions/eventActions';
 import EventForm from './EventForm';
 import '../../style/EventForm.css'
 
+// controlled form
 class EventFormContainer extends Component {
   state = {
     title: "",
@@ -24,6 +25,7 @@ class EventFormContainer extends Component {
     this.props.history.push(`/event/${eventResource.id}`)
   }
 
+  // submit, along with current user id
   handleSubmit = event => {
     event.preventDefault();
     console.log(this.state);
@@ -31,7 +33,6 @@ class EventFormContainer extends Component {
       ...this.state,
       user_id: this.props.sessionUser.data.id
     }, this.pushHistory)
-    // link into event route
   }
   
   render() {

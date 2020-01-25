@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { createUser } from '../../actions/userActions';
 import UserForm from './UserForm';
 
+// controlled form for user creation
 class CreateUserContainer extends Component {
   state = {
     username: '',

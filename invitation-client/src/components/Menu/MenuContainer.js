@@ -20,15 +20,15 @@ class MenuContainer extends Component {
     return (
       <>
         <MenuIcon toggleMenu={this.toggleMenu} />
+
+        {/* toggling menu */}
         {this.state.menuActive ?
           <ActiveMenu 
             sessionUser = {this.props.sessionUser}
             toggleMenu = {this.toggleMenu}
             login = {this.props.login}
             logout = {this.props.logout}
-          />
-        :
-        <></>}
+          /> : <></>}
       </>
     )
   }
