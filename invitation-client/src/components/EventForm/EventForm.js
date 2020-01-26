@@ -1,6 +1,8 @@
-import React from 'react'
+import React from 'react';
+import TimePicker from 'react-time-picker'
+import DatePicker from 'react-date-picker';
 
-const EventForm = ({formData, handleChange, handleSubmit}) => (
+const EventForm = ({formData, handleChange, changeDate, changeTime, handleSubmit}) => (
   <form className='Form' onSubmit={event => handleSubmit(event)} >
     <label>What is the name of this event? <br/>
       <input 
@@ -28,18 +30,19 @@ const EventForm = ({formData, handleChange, handleSubmit}) => (
     </label>
 
     <label>What day does the event happen? <br/>
-      <input 
+      <DatePicker 
         name = 'date'
         value = {formData.date}
-        onChange = {event => handleChange(event)}
+        onChange = {changeDate}
       />
     </label>
 
     <label>What time does the event happen? <br/>
-      <input 
+      <TimePicker 
         name = 'time'
         value = {formData.time}
-        onChange = {event => handleChange(event)}
+        onChange = {changeTime}
+        size = {100}
       />
     </label>
 

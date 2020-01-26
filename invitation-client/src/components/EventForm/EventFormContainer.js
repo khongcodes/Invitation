@@ -11,15 +11,18 @@ class EventFormContainer extends Component {
     title: "",
     description: "",
     location: "",
-    date: "",
-    time: ""
+    date: new Date(),
+    time: '10:00'
   }
 
-  handleChange = event => {
+  handleChange = event => 
     this.setState({
       [event.target.name]: event.target.value
     })
-  }
+
+  changeDate = date => this.setState({ date })
+
+  changeTime = time => this.setState({ time })
 
   pushHistory = eventResource => {
     this.props.history.push(`/event/${eventResource.id}`)
@@ -29,10 +32,10 @@ class EventFormContainer extends Component {
   handleSubmit = event => {
     event.preventDefault();
     console.log(this.state);
-    this.props.addEvent({
-      ...this.state,
-      user_id: this.props.sessionUser.data.id
-    }, this.pushHistory)
+    // this.props.addEvent({
+    //   ...this.state,
+    //   user_id: this.props.sessionUser.data.id
+    // }, this.pushHistory)
   }
   
   render() {
@@ -42,6 +45,8 @@ class EventFormContainer extends Component {
           <EventForm 
             formData = {this.state}
             handleChange = {this.handleChange}
+            changeDate = {this.changeDate}
+            changeTime = {this.changeTime}
             handleSubmit = {this.handleSubmit}
           />
       </div>
