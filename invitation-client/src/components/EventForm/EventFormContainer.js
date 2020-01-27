@@ -20,6 +20,12 @@ class EventFormContainer extends Component {
     this.setState({
       [event.target.name]: event.target.value
     })
+  
+  changeLocation = suggest => {
+    // this.className = 
+    console.log(suggest);
+    // this.setState({location: event.target.value})
+  }
 
   changeDate = date => this.setState({ date })
 
@@ -52,6 +58,7 @@ class EventFormContainer extends Component {
           <EventForm 
             formData = {this.state}
             handleChange = {this.handleChange}
+            changeLocation = {this.changeLocation}
             changeDate = {this.changeDate}
             changeTime = {this.changeTime}
             handleSubmit = {this.handleSubmit}

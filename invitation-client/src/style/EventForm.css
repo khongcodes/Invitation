@@ -1,6 +1,6 @@
 .FormContainer {
   background-color: rgb(236, 236, 236);
-  margin: 7em auto;
+  margin: 4em auto;
   width: 30em;
   /* height: 10em; */
   padding: 1em;
@@ -50,7 +50,49 @@
 
 /* section for imported components */
 
+/* Geosuggest */
+
+.Form input.geosuggest__input{
+  margin-top: 0.3em;
+  height: 1.5em;
+  width: 80%;
+  padding-left: 0.3em;
+}
+
+div.geosuggest__suggests-wrapper {
+  width: 90%;
+  margin-bottom: 1.4em;
+}
+
+ul.geosuggest__suggests {
+  background-color: white; 
+  list-style: none;
+  margin-block-start: 0;
+  margin-block-end: 0.2em;
+  padding-inline-start: 0.8em;
+  padding: 0.4em 0.5em;
+
+  font-size: 0.8em;
+}
+
+ul.geosuggest__suggests--hidden {
+  max-height: 0;
+  overflow: hidden;
+  border-width: 0;
+  padding: 0;
+}
+
+.geosuggest__item--active {
+  background: #d5edff;
+}
+
+li.geosuggest__item {
+  margin: 0.4em 0;
+}
+
+
 /* TimePicker */
+
 div.react-time-picker__wrapper, div.react-date-picker__wrapper {
   margin: 0.4em 0 1.2em;
   padding: 0 0.4em 0 0.3em;
@@ -86,6 +128,7 @@ div.react-time-picker__inputGroup, div.react-date-picker__inputGroup {
   margin: 0 auto;
 }
 
+/* date picker */
 .react-calendar {
   position: relative;
   margin-top: -1.25em
