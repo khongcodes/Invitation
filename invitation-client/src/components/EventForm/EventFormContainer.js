@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { addEvent } from '../../actions/eventActions';
-import { handleStoreDate, handleReadDate } from '../handleDateTime';
+import { handleStoreDate, handleReadDate, handleStoreLocation, handleReadLocation } from '../handleDateTime';
 import EventForm from './EventForm';
 import '../../style/EventForm.css'
 
@@ -20,34 +20,36 @@ class EventFormContainer extends Component {
     this.setState({
       [event.target.name]: event.target.value
     })
-  
-  changeLocation = suggest => {
-    // this.className = 
-    console.log(suggest);
-    // this.setState({location: event.target.value})
-  }
 
+  // store date in state as string
   changeDate = date => this.setState({ date })
 
+  // store time in state as Time object
   changeTime = time => this.setState({ time })
+
+  // store location in state as JavaScript object
+  changeLocation = locationData => {
+    this.setState({
+      location: {
+        label: locationData.label,
+        location: locationData.location
+      }
+    })
+  }
 
   pushHistory = eventResource => {
     this.props.history.push(`/event/${eventResource.id}`)
   }
 
   // submit, along with current user id
+  // process time and location into strings for storage
   handleSubmit = event => {
     event.preventDefault();
-    // console.log({
-    //   ...this.state,
-    //   user_id: this.props.sessionUser.data.id,
-    //   date: handleStoreDate(this.state.date)
-    // })
-    // console.log(handleReadDate(handleStoreDate(this.state.date)))
     this.props.addEvent({
       ...this.state,
       user_id: this.props.sessionUser.data.id,
-      date: handleStoreDate(this.state.date)
+      date: handleStoreDate(this.state.date),
+      location: handleStoreLocation(this.state.location)
     }, this.pushHistory)
   }
   

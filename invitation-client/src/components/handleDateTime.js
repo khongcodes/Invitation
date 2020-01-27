@@ -20,3 +20,9 @@ export const handleRenderTime = timeString => {
 
   return timeArray.join(":") + " " + meridiem;
 }
+
+export const handleStoreLocation = locationData => JSON.stringify(locationData);
+
+export const handleReadLocation = locationJSON => JSON.parse(locationJSON)
+
+export const handleRenderLocation = locationObj => locationObj.label

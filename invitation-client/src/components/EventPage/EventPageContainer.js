@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { handleReadDate, handleRenderDate, handleRenderTime } from '../handleDateTime';
+import { handleReadDate, handleRenderDate, handleRenderTime, handleReadLocation, handleRenderLocation } from '../handleDateTime';
 import { getEvent, clearEvent } from '../../actions/eventActions';
 
 class EventPageContainer extends Component {
@@ -38,7 +38,7 @@ class EventPageContainer extends Component {
         <p>Description:<br/>
           {description}
         </p>
-        <p>Location: {location}</p>
+        <p>Location: {handleRenderLocation(handleReadLocation(location))}</p>
         <p>Date: {handleRenderDate(handleReadDate(date))}</p>
         <p>Time: {handleRenderTime(time)}</p>
         <p>User:{' '}
