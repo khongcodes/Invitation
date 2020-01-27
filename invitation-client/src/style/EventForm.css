@@ -18,7 +18,7 @@
   margin-bottom: 0.6em;
 }
 
-.Form input {
+.Form input.standard-input {
   margin: 0.3em 0 1.2em;
   height: 1.5em;
   width: 80%;
@@ -47,6 +47,46 @@
   margin: 0.5em 0 1.5em;
 }
 
+
+/* section for imported components */
+
+/* TimePicker */
+div.react-time-picker__wrapper, div.react-date-picker__wrapper {
+  margin: 0.4em 0 1.2em;
+  padding: 0 0.4em 0 0.3em;
+}
+
+.react-date-picker--enabled {
+  width: 40.5%
+}
+
+div.react-time-picker__inputGroup, div.react-date-picker__inputGroup {
+  padding: 0.4em;
+}
+
+.react-time-picker__inputGroup__divider {
+  padding: 0 0.2em 0 0.1em;
+  position: relative;
+  top: -1px
+}
+
+.react-time-picker__inputGroup__leadingZero {
+  padding-bottom: 2px;
+}
+
 .react-time-picker__clock {
-  
+  width: 10.5em;
+  height: 10.5em;
+  margin-top: -1.25em;
+}
+
+.react-clock {
+  width: 7em;
+  height: 7em;
+  margin: 0 auto;
+}
+
+.react-calendar {
+  position: relative;
+  margin-top: -1.25em
 }
