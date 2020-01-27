@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { addEvent } from '../../actions/eventActions';
+import { handleStoreDate, handleReadDate } from '../handleDateTime';
 import EventForm from './EventForm';
 import '../../style/EventForm.css'
 
@@ -31,11 +32,17 @@ class EventFormContainer extends Component {
   // submit, along with current user id
   handleSubmit = event => {
     event.preventDefault();
-    console.log(this.state);
-    // this.props.addEvent({
+    // console.log({
     //   ...this.state,
-    //   user_id: this.props.sessionUser.data.id
-    // }, this.pushHistory)
+    //   user_id: this.props.sessionUser.data.id,
+    //   date: handleStoreDate(this.state.date)
+    // })
+    // console.log(handleReadDate(handleStoreDate(this.state.date)))
+    this.props.addEvent({
+      ...this.state,
+      user_id: this.props.sessionUser.data.id,
+      date: handleStoreDate(this.state.date)
+    }, this.pushHistory)
   }
   
   render() {

@@ -1,5 +1,5 @@
 class EventSerializer < ActiveModel::Serializer
-  attributes :id, :title, :description, :location, :time, :user
+  attributes :id, :title, :description, :location, :time, :date, :user
   def user
     if self.object.user
       {
