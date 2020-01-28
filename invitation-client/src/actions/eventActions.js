@@ -49,3 +49,15 @@ export const clearEvent = () => (
     dispatch({type:'CLEAR_EVENT'})
   }
 )
+
+export const editEvent = () => (
+  dispatch => {
+    dispatch({type:'EDIT_EVENT'})
+  }
+)
+
+export const updateEvent = () => (
+  dispatch => {
+    dispatch({type:'UPDATE_EVENT'})
+  }
+)

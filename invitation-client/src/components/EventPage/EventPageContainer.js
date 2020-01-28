@@ -39,7 +39,18 @@ class EventPageContainer extends Component {
         <p>User:{' '}
           {!!user ? <Link to={`/user/${user.id}`}>{ user.name }</Link> : 'none'}
         </p>
-        <button onClick={this.logProps}>log props</button>
+        
+        {/* if authorized display edit button */}
+        <>
+          {this.props.event.authorize ? 
+            <Link to={`/event/${id}/edit`}>
+              <button>test Edit Event</button>
+              {/* navigate to an edit page - push window history*/}
+            </Link>
+            
+            
+          : 'no authorization'}
+        </>
 
       </>
     )

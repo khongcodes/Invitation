@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { addEvent } from '../../actions/eventActions';
-import { handleStoreDate, handleReadDate, handleStoreLocation, handleReadLocation } from '../handleDateTimeLocation';
+import { handleStoreDate, handleStoreLocation } from '../handleDateTimeLocation';
 import EventForm from './EventForm';
 import '../../style/EventForm.css'
 

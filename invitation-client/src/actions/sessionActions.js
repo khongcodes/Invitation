@@ -9,7 +9,6 @@ export const loginStatus = () => (
     axios.get('http://localhost:3001/logged_in')
     .then(response => {
       if (response.data.logged_in) {
-        console.log(response)
         dispatch({type: 'LOGGED_IN', payload: response.data.user})
       } else {
         dispatch({type: 'NOT_LOGGED_IN'})

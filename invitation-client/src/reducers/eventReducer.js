@@ -46,6 +46,12 @@ export default (state={
           loading: false
         }
 
+      case "EDIT_EVENT":
+        return {
+          ...state,
+          status: 'editing event'
+        }
+
     default:
       return state;
   }

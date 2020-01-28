@@ -7,10 +7,12 @@ import { login, logout, loginStatus } from './actions/sessionActions'
 import MenuContainer from './components/Menu/MenuContainer';
 import EventFormContainer from './components/EventForm/EventFormContainer';
 import EventPageContainer from './components/EventPage/EventPageContainer';
+import EventEditContainer from './components/EventForm/EventEditContainer';
 import CreateUserContainer from './components/CreateUserPage/CreateUserContainer';
 import ShowUserContainer from './components/ShowUserPage/ShowUserContainer';
 
 import './style/App.css';
+
 
 class App extends Component {
   componentDidMount() {
@@ -36,7 +38,8 @@ class App extends Component {
             </Route>
 
             <Route path='/create' render={routerProps => <EventFormContainer {...routerProps} sessionUser={this.props.session}/>} />
-            <Route path='/event/:id' component={EventPageContainer} />
+            <Route exact path='/event/:id' component={EventPageContainer} />
+            <Route exact path='/event/:id/edit' component={EventEditContainer} />
             
             {/* prevent user/create from routing user/id */}
             <Switch>
