@@ -21,39 +21,40 @@ class EventPageContainer extends Component {
 
   render() {
     const {title, description, location, time, date, id, user} = this.props.event.data;
-    
-    return (
-      Object.entries(this.props.event.data).length === 0 ?
-      <>
-        <h2>Event {this.props.match.params.id} not found</h2>
-      </>
-      :
-      <>
-        <h2>{title}</h2>
-        <p>Description:<br/>
-          {description}
-        </p>
-        <p>Location: {handleRenderLocation(location)}</p>
-        <p>Date: {handleRenderDate(date)}</p>
-        <p>Time: {handleRenderTime(time)}</p>
-        <p>User:{' '}
-          {!!user ? <Link to={`/user/${user.id}`}>{ user.name }</Link> : 'none'}
-        </p>
-        
-        {/* if authorized display edit button */}
-        <>
-          {this.props.event.authorize ? 
-            <Link to={`/event/${id}/edit`}>
-              <button>test Edit Event</button>
-              {/* navigate to an edit page - push window history*/}
-            </Link>
-            
-            
-          : 'no authorization'}
-        </>
+    // console.log(location)
 
-      </>
-    )
+    if (Object.entries(this.props.event.data).length === 0) {
+      return (<h2>Event {this.props.match.params.id} not found</h2>)
+    } else {
+      return (
+        <>
+          <h2>{title || 'untitled event'}</h2>
+          <p>Description:<br/>
+            {description}
+          </p>
+          <p>Location: {handleRenderLocation(location)}</p>
+          <p>Date: {handleRenderDate(date)}</p>
+          <p>Time: {handleRenderTime(time)}</p>
+          <p>User:{' '}
+            {!!user ? <Link to={`/user/${user.id}`}>{ user.name }</Link> : 'none'}
+          </p>
+          
+          {/* if authorized display edit button */}
+          <>
+            {this.props.event.authorize ? 
+              <Link to={`/event/${id}/edit`}>
+                <button>test Edit Event</button>
+                {/* navigate to an edit page - push window history*/}
+              </Link>
+              
+              
+            : 'no authorization'}
+          </>
+
+        </>
+      )
+    }
+    
   }
 }
 

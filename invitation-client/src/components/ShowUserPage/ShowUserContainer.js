@@ -19,7 +19,7 @@ class ShowUserContainer extends Component {
         <ul>
           {events.map(event => (
             <li key={event.id}><Link to={`/event/${event.id}`} >
-              {event.title}
+              {event.title || 'untitled event'}
             </Link></li>
           ))}
         </ul>

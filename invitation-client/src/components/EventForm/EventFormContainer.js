@@ -55,8 +55,10 @@ class EventFormContainer extends Component {
   // process time and location into strings for storage
   handleSubmit = event => {
     event.preventDefault();
+    const {locationUserString, date, location, ...passedState} = this.state;
+
     this.props.addEvent({
-      ...this.state,
+      ...passedState,
       user_id: this.props.sessionUser.data.id,
       date: handleStoreDate(this.state.date),
       location: handleStoreLocation(this.state.location, this.state.locationUserString)

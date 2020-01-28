@@ -39,7 +39,7 @@ class App extends Component {
 
             <Route path='/create' render={routerProps => <EventFormContainer {...routerProps} sessionUser={this.props.session}/>} />
             <Route exact path='/event/:id' component={EventPageContainer} />
-            <Route exact path='/event/:id/edit' component={EventEditContainer} />
+            <Route exact path='/event/:id/edit' render={routerProps => <EventEditContainer {...routerProps} sessionUser={this.props.session} />} />
             
             {/* prevent user/create from routing user/id */}
             <Switch>

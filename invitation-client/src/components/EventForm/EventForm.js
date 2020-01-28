@@ -7,7 +7,8 @@ const EventForm = ({
   formData, handleChange, handleSubmit, submitText,
   changeLocation, changeDate, changeTime, changeLocationUserString
 }) => {
-  const locationLabel = formData.location ? formData.location.label : ''
+  const locationLabel = formData.location ? formData.location.label :
+    (formData.locationUserString || '')
   
   return (
     <form className='Form' onSubmit={event => handleSubmit(event)} >

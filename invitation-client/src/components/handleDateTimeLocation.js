@@ -39,16 +39,20 @@ export const handleRenderDate = milliseconds => {
 // time is already a string and requires less processing for storage
 // render time with AM/PM for user
 export const handleRenderTime = timeString => {
-  const timeArray = timeString.split(":");
-  const checkHour = parseInt(timeArray[0], 10)
-  let meridiem = "AM"
+  if (timeString) {
+    const timeArray = timeString.split(":");
+    const checkHour = parseInt(timeArray[0], 10)
+    let meridiem = "AM"
 
-  if (checkHour > 12) {
-    timeArray[0] = (checkHour % 12).toString();
-    meridiem = "PM";
+    if (checkHour > 12) {
+      timeArray[0] = (checkHour % 12).toString();
+      meridiem = "PM";
+    }
+
+    return timeArray.join(":") + " " + meridiem;
+  } else {
+    return 'none'
   }
-
-  return timeArray.join(":") + " " + meridiem;
 }
 
 
@@ -89,5 +93,5 @@ export const handleReadLocation = locationString => {
 
 // render location label to user
 export const handleRenderLocation = locationString => {
-  return handleReadLocation(locationString) || 'none'
+  return handleReadLocation(locationString).label || 'none'
 }
