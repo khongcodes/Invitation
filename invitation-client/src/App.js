@@ -29,7 +29,7 @@ class App extends Component {
         <div className='App body-container'>
 
           <div className='App section left'>
-            <Route path='/event/:id' render={routerProps => <div>{this.props.session.data.name}</div>}/>
+            <Route exact path='/event/:id' render={routerProps => <div>{this.props.session.data.name}</div>}/>
           </div>
 
           <div className='App center'>
@@ -55,7 +55,7 @@ class App extends Component {
           </div>
 
           <div className='App section right'>
-            <Route path='/event/:id' render={routerProps => <div>{this.props.session.data.name}</div>}/>
+            <Route exact path='/event/:id' render={routerProps => <div>{this.props.session.data.name}</div>}/>
           </div>
           
         </div>

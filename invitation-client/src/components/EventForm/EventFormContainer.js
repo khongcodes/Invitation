@@ -11,6 +11,7 @@ class EventFormContainer extends Component {
   state = {
     title: "",
     description: "",
+    locationUserString: "",
     location: "",
     date: new Date(),
     time: '10:00'
@@ -27,13 +28,17 @@ class EventFormContainer extends Component {
   // store time in state as Time object
   changeTime = time => this.setState({ time })
 
-  // store location in state as JavaScript object
+  // support user entering their own string and not choosing a location
+  changeLocationUserString = locationUserString => this.setState({ locationUserString })
+
+  // store location data in state as JavaScript object
   changeLocation = locationData => {
     this.setState({
       location: {
         label: locationData.label,
         location: locationData.location
-      }
+      },
+      locationUserString: ''
     })
   }
 
@@ -49,7 +54,7 @@ class EventFormContainer extends Component {
       ...this.state,
       user_id: this.props.sessionUser.data.id,
       date: handleStoreDate(this.state.date),
-      location: handleStoreLocation(this.state.location)
+      location: this.state.locationUserString ? handleStoreLocation(this.state.location) : locationUserString
     }, this.pushHistory)
   }
   
@@ -60,6 +65,7 @@ class EventFormContainer extends Component {
           <EventForm 
             formData = {this.state}
             handleChange = {this.handleChange}
+            changeLocationUserString = {this.changeLocationUserString}
             changeLocation = {this.changeLocation}
             changeDate = {this.changeDate}
             changeTime = {this.changeTime}

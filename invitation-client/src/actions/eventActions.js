@@ -50,9 +50,27 @@ export const clearEvent = () => (
   }
 )
 
-export const editEvent = () => (
+export const editEvent = (id, loadEvent) => (
   dispatch => {
-    dispatch({type:'EDIT_EVENT'})
+    dispatch({type:'LOADING_EVENT'});
+    axios.get(`http://localhost:3001/events/${id}/edit`)
+    .then(response => {
+      dispatch({type: 'GET_EVENT', payload: {
+        event: response.data.event,
+        authorize:response.data.authorize
+      }})
+      return response.data.event
+    })
+    .then(({title, description, location, time, date}) => 
+      loadEvent({title, description, location, time, date})
+    )
+    .catch(error => {
+      if (error.message.endsWith('404')) {
+        dispatch({type: 'EVENT_ERROR', payload: 'Event not found'})
+      } else {
+        dispatch({type: 'EVENT_ERROR', payload: 'User is not authorized to edit this resource'})
+      }
+    })
   }
 )
 
