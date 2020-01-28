@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { getUser, clearUser } from '../../actions/userActions';
+import '../../style/User.css'
 
 class ShowUserContainer extends Component {
   componentDidMount() {
@@ -37,10 +38,9 @@ class ShowUserContainer extends Component {
         <h2>{message}</h2>
       :
         <>
-          show user {id}
           <p>Username: {username}</p>
           <p>Name: {name}</p>
-          <p>Image: {img_url}</p>
+          <p><img className='user-image' src={img_url}/></p>
           <p>Bio: {bio}</p>
           {this.renderEvents(events)}
 

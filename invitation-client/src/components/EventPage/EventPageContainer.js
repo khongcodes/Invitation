@@ -44,9 +44,8 @@ class EventPageContainer extends Component {
                 <button>test Edit Event</button>
                 {/* navigate to an edit page - push window history*/}
               </Link>
-              
-              
-            : 'no authorization'}
+              : <></>
+            }
           </>
 
         </>

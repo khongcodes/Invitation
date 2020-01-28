@@ -7,7 +7,7 @@ import EventForm from './EventForm';
 import '../../style/EventForm.css'
 
 // controlled form
-class EventFormContainer extends Component {
+class EventCreateContainer extends Component {
   state = {
     title: "",
     description: "",
@@ -92,4 +92,4 @@ const mapDispatchToProps = dispatch => ({
   addEvent: (event, callback) => dispatch(addEvent(event, callback))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(EventFormContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(EventCreateContainer)

@@ -64,7 +64,7 @@ export const handleRenderTime = timeString => {
 
 // just pass in location label, to be displayed to user,
 // and longitude latitude, to be used by Google Maps API
-// this limited capture of properties from the API is expressed in EventFormContainer.js,
+// this limited capture of properties from the API is expressed in EventCreateContainer.js,
 // to save space and not have to save more data to state than necessary
 
 // if locationUserString (custom user string input) is present, return that value as location value

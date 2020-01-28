@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { login, logout, loginStatus } from './actions/sessionActions'
 
 import MenuContainer from './components/Menu/MenuContainer';
-import EventFormContainer from './components/EventForm/EventFormContainer';
+import EventCreateContainer from './components/EventForm/EventCreateContainer';
 import EventPageContainer from './components/EventPage/EventPageContainer';
 import EventEditContainer from './components/EventForm/EventEditContainer';
 import CreateUserContainer from './components/CreateUserPage/CreateUserContainer';
@@ -37,7 +37,7 @@ class App extends Component {
               <Redirect to='/create'/>
             </Route>
 
-            <Route path='/create' render={routerProps => <EventFormContainer {...routerProps} sessionUser={this.props.session}/>} />
+            <Route path='/create' render={routerProps => <EventCreateContainer {...routerProps} sessionUser={this.props.session}/>} />
             <Route exact path='/event/:id' component={EventPageContainer} />
             <Route exact path='/event/:id/edit' render={routerProps => <EventEditContainer {...routerProps} sessionUser={this.props.session} />} />
             

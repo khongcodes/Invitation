@@ -91,21 +91,26 @@ class EventEditContainer extends Component {
   }
 
   render() {
-    return (
-      <div className='FormContainer'>
-        <h2 className='Form header'>Edit your event.</h2>
-          <EventForm 
-            formData = {this.state}
-            handleChange = {this.handleChange}
-            changeLocationUserString = {this.changeLocationUserString}
-            changeLocation = {this.changeLocation}
-            changeDate = {this.changeDate}
-            changeTime = {this.changeTime}
-            handleSubmit = {this.handleSubmit}
-            submitText = {'Update event'}
-          />
-      </div>
-    )
+    if (!this.props.event.authorize) {
+      return (<h2>{this.props.event.status}</h2>)
+    } else {
+      return (
+        <div className='FormContainer'>
+          <h2 className='Form header'>Edit your event.</h2>
+            <EventForm 
+              formData = {this.state}
+              handleChange = {this.handleChange}
+              changeLocationUserString = {this.changeLocationUserString}
+              changeLocation = {this.changeLocation}
+              changeDate = {this.changeDate}
+              changeTime = {this.changeTime}
+              handleSubmit = {this.handleSubmit}
+              submitText = {'Update event'}
+            />
+        </div>
+      )
+
+    }
   }
 }
 
