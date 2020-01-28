@@ -29,9 +29,12 @@ class EventFormContainer extends Component {
   changeTime = time => this.setState({ time })
 
   // support user entering their own string and not choosing a location
+  // solely for controlled custom input
   changeLocationUserString = locationUserString => this.setState({ locationUserString })
 
   // store location data in state as JavaScript object
+  // fires on user CHOOSING A GEOSUGGEST SUGGEST ITEM
+  // sets locationUserString to empty string
   changeLocation = locationData => {
     this.setState({
       location: {
@@ -54,7 +57,7 @@ class EventFormContainer extends Component {
       ...this.state,
       user_id: this.props.sessionUser.data.id,
       date: handleStoreDate(this.state.date),
-      location: this.state.locationUserString ? handleStoreLocation(this.state.location) : locationUserString
+      location: this.state.locationUserString ? handleStoreLocation(this.state.location) : this.state.locationUserString
     }, this.pushHistory)
   }
   

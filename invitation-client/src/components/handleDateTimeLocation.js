@@ -12,10 +12,11 @@ export const handleStoreDate = dateObj => dateObj.valueOf()
 export const handleReadDate = milliseconds => new Date(milliseconds)
 
 // render date for user
-export const handleRenderDate = dateObj => {
+export const handleRenderDate = milliseconds => {
+  const date = handleReadDate(milliseconds)
   const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-  return [months[dateObj.getMonth()], dateObj.getDate() + ',', dateObj.getFullYear(), "-", days[dateObj.getDay()]].join(" ")
+  return [months[date.getMonth()], date.getDate() + ',', date.getFullYear(), "-", days[date.getDay()]].join(" ")
 }
 
 
@@ -58,4 +59,12 @@ export const handleStoreLocation = locationData => JSON.stringify(locationData);
 export const handleReadLocation = locationJSON => JSON.parse(locationJSON)
 
 // render location label to user
-export const handleRenderLocation = locationObj => locationObj.label
+export const handleRenderLocation = locationString => {
+  if (locationString.startsWith("{") && locationString.endsWith("}")) {
+    return handleReadLocation(locationString).label
+  } else if (locationString === '""') {
+    return "none"
+  } else {
+    return locationString
+  }
+}

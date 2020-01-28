@@ -53,6 +53,7 @@ class EventsController < ApplicationController
         error: exception.to_s,
       }, status: :not_found
     end
+    @event
   end
 
   def event_authorize
