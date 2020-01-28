@@ -9,7 +9,6 @@ export const getEvent = (id) => (
     dispatch({type: 'LOADING_EVENT'});
     axios.get(`http://localhost:3001/events/${id}`)
     .then(response => {
-      console.log(response)
       if (response.data.event) {
         dispatch({type: 'GET_EVENT', payload: {
           event: response.data.event,
@@ -74,8 +73,24 @@ export const editEvent = (id, loadEvent) => (
   }
 )
 
-export const updateEvent = () => (
+export const updateEvent = (id, event, pushHistory) => (
   dispatch => {
-    dispatch({type:'UPDATE_EVENT'})
+    dispatch({type:'UPDATING_EVENT'});
+    axios.patch(`http://localhost:3001/events/${id}`, {event:event})
+    .then(response => {
+      if (response.data.event) {
+        dispatch({type: 'UPDATED_EVENT', payload: {
+          event: response.data.event,
+          authorize: response.data.authorize
+        }})
+      } else {
+        dispatch({type: 'EVENT_ERROR', payload: response.data.errors})
+      }
+      return response.data.event
+    })
+    .then(event => {
+      pushHistory(event)
+    })
+    .catch(() => dispatch({type: 'EVENT_ERROR', payload:'failed to update event'}))
   }
 )

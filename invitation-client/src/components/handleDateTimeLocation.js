@@ -93,5 +93,10 @@ export const handleReadLocation = locationString => {
 
 // render location label to user
 export const handleRenderLocation = locationString => {
-  return handleReadLocation(locationString).label || 'none'
+  const readableValue = handleReadLocation(locationString);
+  if (typeof readableValue === 'string') {
+    return readableValue || 'none'
+  } else {
+    return readableValue.label
+  }
 }

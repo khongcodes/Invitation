@@ -9,10 +9,8 @@ class EventPageContainer extends Component {
 
   // do not load event to Redux store if already loaded during event creation
   componentDidMount() {
-    if (Object.entries(this.props.event.data).length === 0) {
-      const eventId = parseInt(this.props.match.params.id, 10);
-      this.props.getEvent(eventId);
-    }
+    const eventId = parseInt(this.props.match.params.id, 10);
+    this.props.getEvent(eventId);
   }
 
   componentWillUnmount() {

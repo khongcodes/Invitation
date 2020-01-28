@@ -82,18 +82,12 @@ class EventEditContainer extends Component {
     event.preventDefault();
     const {locationUserString, date, location, ...passedState} = this.state;
 
-    console.log({
+    this.props.updateEvent(this.props.event.data.id, {
       ...passedState,
       user_id: this.props.sessionUser.data.id,
       date: handleStoreDate(this.state.date),
       location: handleStoreLocation(this.state.location, this.state.locationUserString)
-    })
-    // this.props.addEvent({
-    //   ...this.state,
-    //   user_id: this.props.sessionUser.data.id,
-    //   date: handleStoreDate(this.state.date),
-    //   location: handleStoreLocation(this.state.location, this.state.locationUserString)
-    // }, this.pushHistory)
+    }, this.pushHistory)
   }
 
   render() {
@@ -119,7 +113,7 @@ const mapStateToProps = ({event}) => ({event});
 
 const mapDispatchToProps = dispatch => ({
   editEvent: (id, callback) => dispatch(editEvent(id, callback)),
-  updateEvent: (event, callback) => dispatch(updateEvent()),
+  updateEvent: (id, event, callback) => dispatch(updateEvent(id, event, callback)),
   clearEvent: () => dispatch(clearEvent())
 })
 

@@ -6,7 +6,6 @@ export default (state={
 }, action) => {
   switch (action.type) {
     case "LOADING_EVENT":
-      console.log('loading event')
       return {
         data: {},
         authorize: false,
@@ -50,6 +49,21 @@ export default (state={
         return {
           ...state,
           status: 'editing event'
+        }
+
+      case "UPDATING_EVENT":
+        return {
+          ...state,
+          status: 'updating event',
+          loading: true
+        }
+      
+      case "UPDATED_EVENT":
+        return {
+          data: action.payload.event,
+          authorize: action.payload.authorize,
+          status: 'updated event',
+          loading: false
         }
 
     default:
