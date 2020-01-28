@@ -4,7 +4,7 @@ import DatePicker from 'react-date-picker';
 import Geosuggest from 'react-geosuggest';
 
 const EventForm = ({
-  formData, handleChange, handleSubmit,
+  formData, handleChange, handleSubmit, submitText,
   changeLocation, changeDate, changeTime, changeLocationUserString
 }) => {
   const locationLabel = formData.location ? formData.location.label : ''
@@ -55,7 +55,7 @@ const EventForm = ({
         />
       </label>
 
-      <input type='submit' value='Create Event' />
+      <input type='submit' value={submitText} />
     </form>
 )}
 

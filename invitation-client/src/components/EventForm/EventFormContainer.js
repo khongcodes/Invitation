@@ -12,7 +12,7 @@ class EventFormContainer extends Component {
     title: "",
     description: "",
     locationUserString: "",
-    location: "",
+    location: {},
     date: new Date(),
     time: '10:00'
   }
@@ -36,13 +36,15 @@ class EventFormContainer extends Component {
   // fires on user CHOOSING A GEOSUGGEST SUGGEST ITEM
   // sets locationUserString to empty string
   changeLocation = locationData => {
-    this.setState({
-      location: {
-        label: locationData.label,
-        location: locationData.location
-      },
-      locationUserString: ''
-    })
+    if (locationData) {
+      this.setState({
+        location: {
+          label: locationData.label,
+          location: locationData.location
+        },
+        locationUserString: ''
+      })
+    }
   }
 
   pushHistory = eventResource => {
@@ -57,7 +59,7 @@ class EventFormContainer extends Component {
       ...this.state,
       user_id: this.props.sessionUser.data.id,
       date: handleStoreDate(this.state.date),
-      location: this.state.locationUserString ? handleStoreLocation(this.state.location) : this.state.locationUserString
+      location: handleStoreLocation(this.state.location, this.state.locationUserString)
     }, this.pushHistory)
   }
   
@@ -73,6 +75,7 @@ class EventFormContainer extends Component {
             changeDate = {this.changeDate}
             changeTime = {this.changeTime}
             handleSubmit = {this.handleSubmit}
+            submitText = {'Create event'}
           />
       </div>
     )

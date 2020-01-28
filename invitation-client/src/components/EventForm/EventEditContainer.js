@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { handleReadDate, handleReadLocation }  from '../handleDateTimeLocation';
+import { handleReadDate, handleReadLocation, handleStoreDate, handleStoreLocation }  from '../handleDateTimeLocation';
 import { editEvent, clearEvent, updateEvent } from '../../actions/eventActions';
 import EventForm from './EventForm';
 
@@ -64,6 +64,7 @@ class EventEditContainer extends Component {
             changeDate = {this.changeDate}
             changeTime = {this.changeTime}
             handleSubmit = {this.handleSubmit}
+            submitText = {'Update event'}
           />
       </div>
     )
