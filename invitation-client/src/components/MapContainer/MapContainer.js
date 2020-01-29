@@ -11,10 +11,10 @@ class MapContainer extends Component {
     let useLocation; 
     if (typeof processedLocation !== 'string') {
       useLocation = processedLocation.place_id
-      return `https://www.google.com/maps/embed/v1/place?key=AIzaSyCR56nlJdP92vesegyf8bXWkq-6uo9-Nyo&q=place_id:${useLocation}`
+      return `https://www.google.com/maps/embed/v1/place?key=AIzaSyCR56nlJdP92vesegyf8bXWkq-6uo9-Nyo&q=place_id:${useLocation}&zoom=15`
     } else {
       useLocation = processedLocation.split(' ').join('+')
-      return `https://www.google.com/maps/embed/v1/search?key=AIzaSyCR56nlJdP92vesegyf8bXWkq-6uo9-Nyo&q=${useLocation}`
+      return `https://www.google.com/maps/embed/v1/search?key=AIzaSyCR56nlJdP92vesegyf8bXWkq-6uo9-Nyo&q=${useLocation}&zoom=15`
     }
   }
 
