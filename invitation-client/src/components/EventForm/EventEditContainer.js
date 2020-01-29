@@ -91,13 +91,6 @@ class EventEditContainer extends Component {
     this.props.history.push(`/event/${eventResource.id}`)
   }
 
-  // wrapDelete = () => {
-  //   if (window.confirm("Are you sure you want to delete this event?")) {
-  //     if (this.props.sessionUser.status === 'logged in') {
-  //       this.props.destroyEvent(this.props.event.id) 
-  //     }
-  //   }
-  // }
 
   render() {
     const status = this.props.event.status;

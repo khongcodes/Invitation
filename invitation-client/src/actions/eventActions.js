@@ -95,15 +95,3 @@ export const updateEvent = (id, event, pushHistory) => (
     .catch(() => dispatch({type: 'EVENT_ERROR', payload: {message: 'Failed to update event'}}))
   }
 )
-
-export const destroyEvent = (id) => (
-  dispatch => {
-    dispatch({type: 'DESTROYING_EVENT'});
-    axios.delete(`http://localhost:3001/events/${id}`)
-    .then(response => {
-      dispatch({type: 'DELETED_EVENT'});
-      window.location.assign('http://localhost:3000/')
-    })
-    .catch(() => dispatch({type: 'EVENT_ERROR', payload: {message: 'Something went wrong.'}}))
-  }
-)
