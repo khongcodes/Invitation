@@ -18,11 +18,11 @@ class EventPageContainer extends Component {
   }
 
   render() {
-    const {title, description, location, time, date, id, user} = this.props.event.data;
-    // console.log(location)
-
-    if (Object.entries(this.props.event.data).length === 0) {
-      return (<h2>Event {this.props.match.params.id} not found</h2>)
+    const status = this.props.event.status;
+    const {message, title, description, location, time, date, id, user} = this.props.event.data;
+    
+    if (status === 'failure') {
+      return (<h2>{ message }</h2>);
     } else {
       return (
         <>
@@ -41,7 +41,7 @@ class EventPageContainer extends Component {
           <>
             {this.props.event.authorize ? 
               <Link to={`/event/${id}/edit`}>
-                <button>test Edit Event</button>
+                <button>Edit Event</button>
                 {/* navigate to an edit page - push window history*/}
               </Link>
               : <></>
@@ -49,9 +49,8 @@ class EventPageContainer extends Component {
           </>
 
         </>
-      )
+      );
     }
-    
   }
 }
 

@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  
+  before_action :set_user, except: :create
+
   def create
     @user = User.create(user_params)
     
@@ -25,6 +26,31 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+    if user_authorize
+      render json: {user: UserSerializer.new(@user), authorize: user_authorize}, status: :accepted
+    elsif !user_authorize
+      render json: {error: 'You do not have permission to edit this resource'}, status: :unauthorized
+    end
+  end
+
+  def update
+    @user.assign_attributes({
+      username: user_params[:username],
+      name: user_params[:name],
+      bio: user_params[:bio],
+      img_url: user_params[:img_url]
+    })
+
+    if !@user.authenticate(user_params['password'])
+      render json: {error: 'Authentication failed - enter password again'}, status: :unauthorized
+    elsif user_authorize && @user.save
+      render json: {user: UserSerializer.new(@user), authorize: user_authorize}, status: :accepted
+    else
+      render json: {error: 'Failed to update user'}, status: :not_acceptable
+    end
+  end
+
   private
 
   def user_params
@@ -34,4 +60,15 @@ class UsersController < ApplicationController
   def user_authorize
     @user == current_user
   end
+
+  def set_user
+    begin
+      @user = User.find(params[:id])
+    rescue ActiveRecord::RecordNotFound => exception
+      render json: {
+        error: exception.to_s,
+      }, status: :not_found
+    end
+  end
+
 end

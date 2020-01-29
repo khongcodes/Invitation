@@ -32,20 +32,24 @@ class ShowUserContainer extends Component {
     const status = this.props.user.status;
     const {message, id, username, name, bio, img_url, events} = this.props.user.data;
 
-    return (
-      // if user not found display failure
-      status === 'failure' ?
-        <h2>{message}</h2>
-      :
+    if (status === 'failure') {
+      return (<h2>{ message }</h2>);
+    } else {
+      return (
         <>
           <p>Username: {username}</p>
           <p>Name: {name}</p>
           <p><img className='user-image' src={img_url}/></p>
           <p>Bio: {bio}</p>
           {this.renderEvents(events)}
-
+          {this.props.user.authorize ?
+            <Link to={`/user/${id}/edit`} >
+              <button>Edit User</button>
+            </Link>
+          : <></>}
         </>
-    )
+      )
+    }
   }
 }
 
