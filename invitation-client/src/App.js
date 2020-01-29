@@ -9,8 +9,7 @@ import EventCreateContainer from './components/EventForm/EventCreateContainer';
 import EventPageContainer from './components/EventPage/EventPageContainer';
 import EventEditContainer from './components/EventForm/EventEditContainer';
 import CreateUserContainer from './components/CreateUserPage/CreateUserContainer';
-import ShowUserContainer from './components/UserPage/ShowUserContainer';
-import EditUserContainer from './components/UserPage/EditUserContainer';
+import ShowUserContainer from './components/ShowUserPage/ShowUserContainer';
 
 import './style/App.css';
 
@@ -49,10 +48,8 @@ class App extends Component {
               <Route path='/user/create'>
                 {userIsLoaded ? <CreateUserContainer /> : <Redirect to='/create' />}
               </Route>
-              
-              <Route path='/user/:id/edit' component={EditUserContainer} />
+
               <Route path='/user/:id' component={ShowUserContainer} />
-              
               
             </Switch>
           </div>

@@ -1,10 +1,9 @@
 import React from 'react'
 
-const UserForm = ({ formData, handleChange, handleSubmit, submitText }) => (
+const UserForm = ({formData, handleChange, handleSubmit}) => (
   <form className='Form' onSubmit={event => handleSubmit(event)}>
     <label>Username: <br />
       <input 
-        type = 'text'
         name = 'username'
         value = {formData.username}
         onChange = {event => handleChange(event)}
@@ -12,8 +11,7 @@ const UserForm = ({ formData, handleChange, handleSubmit, submitText }) => (
     </label>
 
     <label>Password: <br/>
-      <input
-        type = 'password'
+      <input type='password'
         name = 'password'
         value = {formData.password}
         onChange = {event => handleChange(event)}
@@ -24,7 +22,6 @@ const UserForm = ({ formData, handleChange, handleSubmit, submitText }) => (
 
     <label>Name: <br/>
       <input 
-        type = 'text'
         name = 'name'
         value = {formData.name}
         onChange = {event => handleChange(event)}
@@ -33,7 +30,6 @@ const UserForm = ({ formData, handleChange, handleSubmit, submitText }) => (
 
     <label>Image URL: <br/>
       <input 
-        type = 'text'
         name = 'img_url'
         value = {formData.img_url}
         onChange = {event => handleChange(event)}
@@ -48,7 +44,7 @@ const UserForm = ({ formData, handleChange, handleSubmit, submitText }) => (
       />
     </label>
 
-    <input type='submit' value={submitText}/>
+    <input type='submit' value='Create User'/>
   </form>
 )
 

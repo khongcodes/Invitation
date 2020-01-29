@@ -33,7 +33,6 @@ class CreateUserContainer extends Component {
           formData = {this.state}
           handleChange = {this.handleChange}
           handleSubmit = {this.handleSubmit}
-          submitText = {'Create user'}
         />
       </div>
     )
