@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { handleReadDate, handleReadLocation, handleStoreDate, handleStoreLocation }  from '../handleDateTimeLocation';
-import { editEvent, clearEvent, updateEvent } from '../../actions/eventActions';
+import { editEvent, clearEvent, updateEvent, destroyEvent } from '../../actions/eventActions';
 import EventForm from './EventForm';
 
 class EventEditContainer extends Component {
@@ -75,10 +75,6 @@ class EventEditContainer extends Component {
     }
   }
 
-  pushHistory = eventResource => {
-    this.props.history.push(`/event/${eventResource.id}`)
-  }
-
   handleSubmit = event => {
     event.preventDefault();
     const {locationUserString, date, location, ...passedState} = this.state;
@@ -90,6 +86,18 @@ class EventEditContainer extends Component {
       location: handleStoreLocation(this.state.location, this.state.locationUserString)
     }, this.pushHistory)
   }
+
+  pushHistory = eventResource => {
+    this.props.history.push(`/event/${eventResource.id}`)
+  }
+
+  // wrapDelete = () => {
+  //   if (window.confirm("Are you sure you want to delete this event?")) {
+  //     if (this.props.sessionUser.status === 'logged in') {
+  //       this.props.destroyEvent(this.props.event.id) 
+  //     }
+  //   }
+  // }
 
   render() {
     const status = this.props.event.status;
@@ -110,6 +118,7 @@ class EventEditContainer extends Component {
               handleSubmit = {this.handleSubmit}
               submitText = {'Update event'}
             />
+            {/* <button onClick={this.wrapDelete}>Delete Event</button> */}
         </div>
       );
     }
@@ -122,6 +131,7 @@ const mapDispatchToProps = dispatch => ({
   editEvent: (id, callback) => dispatch(editEvent(id, callback)),
   updateEvent: (id, event, callback) => dispatch(updateEvent(id, event, callback)),
   clearEvent: () => dispatch(clearEvent())
+  // destroyEvent: id => dispatch(destroyEvent(id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(EventEditContainer)
