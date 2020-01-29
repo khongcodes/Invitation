@@ -44,10 +44,11 @@ class EventEditContainer extends Component {
     this.props.clearEvent();
   }
 
-  handleChange = event => 
+  handleChange = event => {
     this.setState({
       [event.target.name]: event.target.value
     })
+  }
 
   // store date in state as string
   changeDate = date => this.setState({ date })
@@ -99,8 +100,10 @@ class EventEditContainer extends Component {
   // }
 
   render() {
-    if (!this.props.event.authorize) {
-      return (<h2>{this.props.event.status}</h2>)
+    const status = this.props.event.status;
+
+    if (status === 'failure') {
+      return (<h2>{this.props.event.data.message}</h2>);
     } else {
       return (
         <div className='FormContainer'>
@@ -117,8 +120,7 @@ class EventEditContainer extends Component {
             />
             {/* <button onClick={this.wrapDelete}>Delete Event</button> */}
         </div>
-      )
-
+      );
     }
   }
 }

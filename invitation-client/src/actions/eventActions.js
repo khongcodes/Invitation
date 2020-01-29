@@ -15,10 +15,10 @@ export const getEvent = (id) => (
           authorize:response.data.authorize
         }})
       } else {
-        dispatch({type: 'EVENT_ERROR', payload: response.statusText})
+        dispatch({type: 'EVENT_ERROR', payload: {message: response.statusText}})
       }
     })
-    .catch(() => dispatch({type: 'EVENT_ERROR', payload:'event not found'}))
+    .catch(() => dispatch({type: 'EVENT_ERROR', payload: {message: 'Event not found.'}}))
   }
 )
 
@@ -32,14 +32,14 @@ export const addEvent = (event, pushHistory) => (
           authorize: response.data.authorize
         }})
       } else {
-        dispatch({type: 'EVENT_ERROR', payload: response.data.errors})
+        dispatch({type: 'EVENT_ERROR', payload: {message: response.data.errors}})
       }
       return response.data.event
     })
     .then(event => {
       pushHistory(event)
     })
-    .catch(() => dispatch({type: 'EVENT_ERROR', payload:'failed to create event'}))
+    .catch(() => dispatch({type: 'EVENT_ERROR', payload: {message: 'Event could not be created.'}}))
   }
 )
 
@@ -49,6 +49,7 @@ export const clearEvent = () => (
   }
 )
 
+// code similar to getEvent - but must pass an authorization check
 export const editEvent = (id, loadEvent) => (
   dispatch => {
     dispatch({type:'LOADING_EVENT'});
@@ -65,9 +66,9 @@ export const editEvent = (id, loadEvent) => (
     )
     .catch(error => {
       if (error.message.endsWith('404')) {
-        dispatch({type: 'EVENT_ERROR', payload: 'Event not found'})
+        dispatch({type: 'EVENT_ERROR', payload: {message: 'Event not found.'}})
       } else {
-        dispatch({type: 'EVENT_ERROR', payload: 'User is not authorized to edit this resource'})
+        dispatch({type: 'EVENT_ERROR', payload: {message: 'User is not authorized to edit this resource.'}})
       }
     })
   }
@@ -84,14 +85,14 @@ export const updateEvent = (id, event, pushHistory) => (
           authorize: response.data.authorize
         }})
       } else {
-        dispatch({type: 'EVENT_ERROR', payload: response.data.errors})
+        dispatch({type: 'EVENT_ERROR', payload: {message: response.data.errors}})
       }
       return response.data.event
     })
     .then(event => {
       pushHistory(event)
     })
-    .catch(() => dispatch({type: 'EVENT_ERROR', payload:'failed to update event'}))
+    .catch(() => dispatch({type: 'EVENT_ERROR', payload: {message: 'Failed to update event'}}))
   }
 )
 

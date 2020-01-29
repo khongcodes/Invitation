@@ -31,9 +31,9 @@ export default (state={
 
     case "EVENT_ERROR":
       return {
-        data: {},
+        data: action.payload,
         authorize: false,
-        status: action.payload || 'error',
+        status: 'failure',
         loading: false
       };
     
