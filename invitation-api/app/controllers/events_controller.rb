@@ -39,6 +39,17 @@ class EventsController < ApplicationController
     end
   end
 
+  # def delete
+  #   byebug
+  #   if !@event.user || event_authorize
+  #     title = @event.title
+  #     @event.destroy
+  #     render json: {message: "Event #{title} deleted."}, status: :no_content
+  #   else
+  #     render json: {errors: ['failed to delete event']}, status: :not_acceptable
+  #   end
+  # end
+
   private
 
   def event_params
