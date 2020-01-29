@@ -55,6 +55,13 @@ export const handleRenderTime = timeString => {
   }
 }
 
+export const convertCompiledDateTime = (milliseconds, timeString) => {
+  const dateTime = new Date(milliseconds);
+  dateTime.setHours(timeString.split(":")[0]);
+  dateTime.setMinutes(timeString.split(":")[1]);
+  return dateTime.valueOf();
+}
+
 
 //////////////////////////////////////////////////////////////
 //////////////////        LOCATION        ///////////////////
@@ -75,7 +82,7 @@ export const handleStoreLocation = (locationData, locationUserString) => {
   if (locationUserString) {
     return locationUserString
   } else {
-    return Object.entries(locationData).length !== 0 ? JSON.stringify(locationData) : null
+    return Object.entries(locationData).length > 1 ? JSON.stringify(locationData) : null
   }
 }
 

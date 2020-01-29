@@ -12,6 +12,7 @@ import CreateUserContainer from './components/CreateUserPage/CreateUserContainer
 import ShowUserContainer from './components/UserPage/ShowUserContainer';
 import EditUserContainer from './components/UserPage/EditUserContainer';
 import MapContainer from './components/MapContainer/MapContainer';
+import WeatherContainer from './components/WeatherContainer/WeatherContainer';
 
 import './style/App.css';
 
@@ -59,7 +60,7 @@ class App extends Component {
           </div>
 
           <div className='App section right'>
-            <Route exact path='/event/:id' render={routerProps => <div>{this.props.session.data.name}</div>}/>
+            <Route exact path='/event/:id' component={WeatherContainer} />
           </div>
           
         </div>

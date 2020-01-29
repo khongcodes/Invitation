@@ -27,12 +27,17 @@ class MapContainer extends Component {
   render() {
     return (
       <div>
-        <iframe
-          width="100%"
-          height="600"
-          frameBorder="0" style={{border:0}}
-          src={this.makeLocationQuery(handleReadLocation(this.props.location))}>
-        </iframe>
+        {
+          this.props.location ?
+            <iframe
+              width="100%"
+              height="600"
+              frameBorder="0" style={{border:0}}
+              src={this.makeLocationQuery(handleReadLocation(this.props.location))}>
+            </iframe>
+          : 
+            'Map could not be loaded for this location.'
+        }
       </div>
     )
   }

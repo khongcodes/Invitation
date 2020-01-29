@@ -58,7 +58,10 @@ class EventEditContainer extends Component {
 
   // support user entering their own string and not choosing a location
   // solely for controlled custom input
-  changeLocationUserString = locationUserString => this.setState({ locationUserString })
+  changeLocationUserString = locationUserString => this.setState({
+    locationUserString,
+    location: {}
+  })
 
   // store location in state as JavaScript object
   // this fires when the user CLICKS A SUGGESTION

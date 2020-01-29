@@ -31,6 +31,7 @@ class EventsController < ApplicationController
   end
 
   def update
+    # byebug
     @event.assign_attributes(event_params)
     if event_authorize && @event.save
       render json: {event: EventSerializer.new(@event), authorize: event_authorize}, status: :accepted
