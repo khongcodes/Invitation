@@ -40,7 +40,8 @@ class EventCreateContainer extends Component {
       this.setState({
         location: {
           label: locationData.label,
-          location: locationData.location
+          location: locationData.location,
+          place_id: locationData.placeId
         },
         locationUserString: ''
       })

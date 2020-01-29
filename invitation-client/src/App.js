@@ -11,6 +11,7 @@ import EventEditContainer from './components/EventForm/EventEditContainer';
 import CreateUserContainer from './components/CreateUserPage/CreateUserContainer';
 import ShowUserContainer from './components/UserPage/ShowUserContainer';
 import EditUserContainer from './components/UserPage/EditUserContainer';
+import MapContainer from './components/MapContainer/MapContainer';
 
 import './style/App.css';
 
@@ -30,7 +31,7 @@ class App extends Component {
         <div className='App body-container'>
 
           <div className='App section left'>
-            <Route exact path='/event/:id' render={routerProps => <div>{this.props.session.data.name}</div>}/>
+            <Route exact path='/event/:id' component={MapContainer}/>
           </div>
 
           <div className='App center'>

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { handleReadDate, handleReadLocation, handleStoreDate, handleStoreLocation }  from '../handleDateTimeLocation';
-import { editEvent, clearEvent, updateEvent, destroyEvent } from '../../actions/eventActions';
+import { editEvent, clearEvent, updateEvent } from '../../actions/eventActions';
 import EventForm from './EventForm';
 
 class EventEditContainer extends Component {
@@ -68,7 +68,8 @@ class EventEditContainer extends Component {
       this.setState({
         location: {
           label: locationData.label,
-          location: locationData.location
+          location: locationData.location,
+          place_id: locationData.placeId
         },
         locationUserString: ''
       })
