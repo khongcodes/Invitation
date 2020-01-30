@@ -41,6 +41,10 @@ export const handleRenderDate = milliseconds => {
 export const handleRenderTime = timeString => {
   if (timeString) {
     const timeArray = timeString.split(":");
+    if (timeArray[1].length < 2) {
+      timeArray[1] = `0${timeArray[1]}`
+    }
+    
     const checkHour = parseInt(timeArray[0], 10)
     let meridiem = "AM"
 

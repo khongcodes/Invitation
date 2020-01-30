@@ -3,25 +3,75 @@ import React, { Component } from 'react'
 import { handleRenderDate, handleRenderTime, convertCompiledDateTime } from '../handleDateTimeLocation'
 
 export default class WeatherCard extends Component {
-  componentDidMount() {
-    // const {lat, lng} = this.props.location.location;
-    // const dateTimeMilliseconds = convertCompiledDateTime(this.props.date, this.props.time)
-    // fetch(`/forecast/719a610df11e5fbabdf3c4290515d014/${lat},${lng},${dateTimeMilliseconds/1000}`)
-    // .then(response => console.log(response))
-    // .then(data => {
-    //   console.log(data)
-    // })
-  //   .catch(error=>console.log(error))
+  state = {
+    cityName: '',
+    closestDate: undefined,
+    closestForecast: {
+      main: {},
+      weather: [],
+      clouds: {},
+      wind: {},
+      rain: {},
+      snow: {}
+    }
   }
 
+  componentDidMount() {
+    const location = this.props.location.location;
+    const requestedDate = convertCompiledDateTime(this.props.date, this.props.time);
+    fetch(`http://api.openweathermap.org/data/2.5/forecast?lat=${location.lat}&lon=${location.lng}&units=imperial&appid=dda49875568dbde96bc7c0d0a91a7d81`)
+    .then(resp => resp.json())
+    .then(data => {
+      console.log(data)
+      const closestDate = data.list.map(t => t.dt*1000).sort((a,b) => (a-requestedDate) - (b-requestedDate))[0];
+      const closestForecast = data.list[data.list.findIndex(item => item.dt === closestDate/1000)];
+      this.setState(previousState => ({
+        cityName: data.city.name,
+        closestDate: closestDate, 
+        closestForecast: {
+          ...previousState.closestForecast,
+          ...closestForecast
+        },
+      }))
+    })
+  }
+
+  listWeatherConditions = (weatherArray) => (
+    weatherArray.map(item => 
+      <div key={item.id} className='WeatherCard'>
+        <img src={`http://openweathermap.org/img/wn/${item.icon}@2x.png`} alt={item.main}/>
+        <p>{item.description}</p>
+      </div>
+    )
+  )
+
+  renderIfPresent = (startString, item, key, endString) => ((Object.entries(item).length > 0) ? 
+    <p>{startString}: {item[key]} {endString}</p>
+    : 
+    <></>
+  )
+
   render() {
-    console.log(new Date(this.props.date))
-    console.log(this.props.time)
+    const date = this.state.closestDate;
+    const time = `${new Date(date).getHours()}:${new Date(date).getMinutes()}`;
+    const { main, weather, clouds, wind, rain, snow } = this.state.closestForecast;
+
     return (
-      <div>
-        <p>location label: {this.props.location.label}</p>
-        <p>date: {handleRenderDate(this.props.date)}</p>
-        <p>time: {handleRenderTime(this.props.time)}</p>
+      <div className = 'WeatherCardContainer'>
+        <h3>Closest Available Weather Forecast:</h3>
+        <h4>{this.state.cityName}</h4>
+        <p>{handleRenderDate(date)} - {handleRenderTime(time)}</p>
+        <p>Temperature: {main.temp} F</p>
+        <p>Feels like: {main.feels_like} F</p>
+
+        {this.listWeatherConditions(weather)}
+        {this.renderIfPresent('Cloudiness', clouds, 'all', '%')}
+        {this.renderIfPresent('Wind speed', wind, 'speed', 'mph')}
+        {this.renderIfPresent('Rain volume', rain, '3h', 'mm in the last 3 hours')}
+        {this.renderIfPresent('Snow volume', snow, '3h', 'in the last 3 hours')}
+
+        {/* Display icon */}
+
       </div>
     )
   }
