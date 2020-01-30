@@ -34,6 +34,7 @@ class CreateUserContainer extends Component {
           handleChange = {this.handleChange}
           handleSubmit = {this.handleSubmit}
           submitText = {'Create user'}
+          editUser = {false}
         />
       </div>
     )

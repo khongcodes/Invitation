@@ -1,15 +1,15 @@
 import React from 'react'
 
-const UserForm = ({ formData, handleChange, handleSubmit, submitText }) => (
+const UserForm = ({ formData, handleChange, handleSubmit, submitText, editUser }) => (
   <form className='Form' onSubmit={event => handleSubmit(event)}>
-    <label>Username: <br />
+    {!editUser ? <label>Username: <br />
       <input 
         type = 'text'
         name = 'username'
         value = {formData.username}
         onChange = {event => handleChange(event)}
       />
-    </label>
+    </label> : <></>}
 
     <label>Password: <br/>
       <input

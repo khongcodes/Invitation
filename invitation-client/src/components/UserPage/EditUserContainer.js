@@ -59,6 +59,7 @@ class EditUserContainer extends Component {
             handleChange = {this.handleChange}
             handleSubmit = {this.handleSubmit}
             submitText = {'Update user'}
+            editUser = {true}
           />
         </div>
       )
