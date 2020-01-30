@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { handleReadLocation } from '../handleDateTimeLocation'
-import MapPlace from './MapPlace';
 
 class MapContainer extends Component {
 
@@ -31,8 +30,7 @@ class MapContainer extends Component {
           this.props.location ?
             <iframe
               width="100%"
-              height="600"
-              frameBorder="0" style={{border:0}}
+              frameBorder="0" style={{border:0, height:'92vh'}}
               src={this.makeLocationQuery(handleReadLocation(this.props.location))}>
             </iframe>
           : 

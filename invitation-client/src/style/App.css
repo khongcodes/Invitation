@@ -11,13 +11,13 @@
 }
 
 .App.center {
-  width: 50%;
+  width: 46%;
   box-sizing: border-box;
   padding: 1em 2.5em;
 }
 
 .App.section {
-  width: 25%;
+  width: 27%;
   background-color: rgb(250, 224, 228);
   box-sizing: border-box;
   padding: 1em;

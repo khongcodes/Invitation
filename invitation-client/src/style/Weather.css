@@ -1,0 +1,33 @@
+.WeatherCard.Container {
+  padding-left: 1em;
+}
+
+.WeatherCard p {
+  font-size: 0.88em;
+}
+
+.WeatherCard .cityName {
+  margin-bottom: 0;
+}
+
+.WeatherCard .dateTime {
+  margin-top: 0.3em;
+}
+
+.WeatherCard .weatherInfoContainer {
+  background-color: rgba(248, 151, 151, 0.493);
+  display: flex;
+  border-radius: 0.5em;
+  padding: 0.5em 0;
+}
+
+.WeatherCard .iconContainer {
+  width: 48%;
+  box-sizing: border-box;
+  padding: 0 0.5em 0 1em;
+}
+
+.WeatherCard .weatherInfo {
+  width: 52%;
+  box-sizing: border-box;
+}

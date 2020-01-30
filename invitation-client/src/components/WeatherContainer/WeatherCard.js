@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 import { handleRenderDate, handleRenderTime, convertCompiledDateTime } from '../handleDateTimeLocation'
+import '../../style/Weather.css'
 
 export default class WeatherCard extends Component {
   state = {
@@ -48,7 +49,7 @@ export default class WeatherCard extends Component {
 
   listWeatherConditions = (weatherArray) => (
     weatherArray.map(item => 
-      <div key={item.id} className='WeatherCard'>
+      <div key={item.id} className='WeatherCard listItems'>
         <img src={`http://openweathermap.org/img/wn/${item.icon}@2x.png`} alt={item.main}/>
         <p>{item.description}</p>
       </div>
@@ -67,20 +68,31 @@ export default class WeatherCard extends Component {
     const { main, weather, clouds, wind, rain, snow } = this.state.closestForecast;
 
     return (
-      <div className = 'WeatherCardContainer'>
+      <div className = 'WeatherCard Container'>
         <h3>Closest Available Weather Forecast:</h3>
-        <h4>{this.state.cityName}</h4>
-        <p>{handleRenderDate(date)} - {handleRenderTime(time)}</p>
-        <p>Temperature: {main.temp} F</p>
-        <p>Feels like: {main.feels_like} F</p>
+        <h4 className = 'cityName'>
+          { this.state.cityName }
+        </h4>
+        <p className = 'dateTime'>
+          { handleRenderDate(date) } - { handleRenderTime(time) }
+        </p>
 
-        {this.listWeatherConditions(weather)}
-        {this.renderIfPresent('Cloudiness', clouds, 'all', '%')}
-        {this.renderIfPresent('Wind speed', wind, 'speed', 'mph')}
-        {this.renderIfPresent('Rain volume', rain, '3h', 'mm in the last 3 hours')}
-        {this.renderIfPresent('Snow volume', snow, '3h', 'in the last 3 hours')}
+        <div className = 'weatherInfoContainer'>
+          <div className = 'iconContainer'>
+            {this.listWeatherConditions(weather)}
+          </div>
 
-        {/* Display icon */}
+          <div className = 'weatherInfo'>
+            <p>Temperature: { main.temp } F</p>
+            <p>Feels like: { main.feels_like } F</p>
+            <p>Humidity: {main.humidity}%</p>
+
+            {this.renderIfPresent('Cloudiness', clouds, 'all', '%')}
+            {this.renderIfPresent('Wind speed', wind, 'speed', 'mph')}
+            {this.renderIfPresent('Rain volume', rain, '3h', 'mm in the last 3 hours')}
+            {this.renderIfPresent('Snow volume', snow, '3h', 'in the last 3 hours')}
+          </div>
+        </div>
 
       </div>
     )
