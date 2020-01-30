@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import proxy from '../../setupProxy';
 import { getUser, clearUser } from '../../actions/userActions';
 import '../../style/User.css'
 

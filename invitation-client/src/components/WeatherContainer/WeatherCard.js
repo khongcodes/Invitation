@@ -1,19 +1,16 @@
 import React, { Component } from 'react'
-import proxy from '../../setupProxy'
 
 import { handleRenderDate, handleRenderTime, convertCompiledDateTime } from '../handleDateTimeLocation'
 
 export default class WeatherCard extends Component {
   componentDidMount() {
-    // const chi = '719a610df11e5fbabdf3c4290515d014';
-    const {lat, lng} = this.props.location.location;
-    const dateTimeMilliseconds = convertCompiledDateTime(this.props.date, this.props.time)
-    // console.log(`https://api.darksky.net/forecast/719a610df11e5fbabdf3c4290515d014/${lat},${lng},${dateTimeMilliseconds/1000}`)
-    fetch(`/forecast/719a610df11e5fbabdf3c4290515d014/${lat},${lng},${dateTimeMilliseconds/1000}`)
-    .then(response => console.log(response))
-    .then(data => {
-      console.log(data)
-    })
+    // const {lat, lng} = this.props.location.location;
+    // const dateTimeMilliseconds = convertCompiledDateTime(this.props.date, this.props.time)
+    // fetch(`/forecast/719a610df11e5fbabdf3c4290515d014/${lat},${lng},${dateTimeMilliseconds/1000}`)
+    // .then(response => console.log(response))
+    // .then(data => {
+    //   console.log(data)
+    // })
   //   .catch(error=>console.log(error))
   }
 
