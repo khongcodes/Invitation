@@ -1,0 +1,12 @@
+h2.event-title {
+  margin-bottom: 1em;
+}
+.event-description {
+  margin-top: -0.5em;
+  font-size: 0.94em;
+  padding-left: 2em;
+}
+
+button.edit-event {
+  margin-top: 2em;
+}

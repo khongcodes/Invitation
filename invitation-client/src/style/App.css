@@ -3,7 +3,8 @@
   left: 0.5vw;
   top: 0.5vw;
   width: 99vw;
-  height: 98%;
+  min-height: 98vh;
+  height: fit-content;
   margin: 0 auto;
   background-color: pink;
   display: flex;
@@ -22,7 +23,6 @@
   box-sizing: border-box;
   padding: 1em;
 }
-
 
 /* .App-logo {
   height: 40vmin;

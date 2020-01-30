@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import { handleRenderDate, handleRenderTime, handleRenderLocation } from '../handleDateTimeLocation';
 import { getEvent, clearEvent } from '../../actions/eventActions';
+import '../../style/Event.css'
 
 class EventPageContainer extends Component {
 
@@ -26,10 +27,15 @@ class EventPageContainer extends Component {
     } else {
       return (
         <>
-          <h2>{title || 'untitled event'}</h2>
-          <p>Description:<br/>
-            {description}
+          <h2 className='event-title'>
+            {title || 'untitled event'}
+          </h2>
+          
+          <p>Description:</p>
+          <p className='event-description'>
+            {description || 'none'}
           </p>
+          
           <p>Location: {handleRenderLocation(location)}</p>
           <p>Date: {handleRenderDate(date)}</p>
           <p>Time: {handleRenderTime(time)}</p>
@@ -41,7 +47,7 @@ class EventPageContainer extends Component {
           <>
             {this.props.event.authorize ? 
               <Link to={`/event/${id}/edit`}>
-                <button>Edit Event</button>
+                <button className='edit-event'>Edit Event</button>
                 {/* navigate to an edit page - push window history*/}
               </Link>
               : <></>

@@ -17,13 +17,16 @@ class ShowUserContainer extends Component {
   renderEvents = events => {
     if (events) {
       return (
-        <ul>
-          {events.map(event => (
-            <li key={event.id}><Link to={`/event/${event.id}`} >
-              {event.title || 'untitled event'}
-            </Link></li>
-          ))}
-        </ul>
+        <>
+          <h4 className='events-list-title'>Events</h4>
+          <ul>
+            {events.map(event => (
+              <li key={event.id}><Link to={`/event/${event.id}`} >
+                {event.title || 'untitled event'}
+              </Link></li>
+            ))}
+          </ul>
+        </>
       )
     }
   }
@@ -36,18 +39,21 @@ class ShowUserContainer extends Component {
       return (<h2>{ message }</h2>);
     } else {
       return (
-        <>
-          <p>Username: {username}</p>
-          <p>Name: {name}</p>
-          <p><img className='user-image' src={img_url}/></p>
-          <p>Bio: {bio}</p>
+        <div className='User'>
+          <p><img className='image' src={img_url}/></p>
+          <h2 className='name'>{name}</h2>
+          <p className='username'>Username: {username}</p>
+          
+          <p className='bio-title'>Bio:</p>
+          <p className='bio-content'>{bio}</p>
+
           {this.renderEvents(events)}
           {this.props.user.authorize ?
             <Link to={`/user/${id}/edit`} >
-              <button>Edit User</button>
+              <button className='edit-user'>Edit User</button>
             </Link>
           : <></>}
-        </>
+        </div>
       )
     }
   }

@@ -1,4 +1,30 @@
-img.user-image {
+.User .image {
   max-width: 70%;
   max-height: 70%;
+}
+
+.User h2.name {
+  margin-bottom: 0em;
+}
+
+.User .username {
+  margin-top: 0.2em;
+  font-size: 0.9em
+}
+
+.User .bio-title {
+  margin-bottom: 0.5em;
+}
+
+.User .bio-content {
+  margin: 0em 1em 2em;
+  font-size: 0.95em;
+}
+
+.User h4.events-list-title {
+  margin-bottom: 0em;
+}
+
+.User button.edit-user {
+  margin: 1em 0;
 }
