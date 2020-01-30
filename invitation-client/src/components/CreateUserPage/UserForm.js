@@ -4,6 +4,7 @@ const UserForm = ({ formData, handleChange, handleSubmit, submitText, editUser }
   <form className='Form' onSubmit={event => handleSubmit(event)}>
     {!editUser ? <label>Username: <br />
       <input 
+        className = 'standard-input' 
         type = 'text'
         name = 'username'
         value = {formData.username}
@@ -13,6 +14,7 @@ const UserForm = ({ formData, handleChange, handleSubmit, submitText, editUser }
 
     <label>Password: <br/>
       <input
+        className = 'standard-input' 
         type = 'password'
         name = 'password'
         value = {formData.password}
@@ -24,6 +26,7 @@ const UserForm = ({ formData, handleChange, handleSubmit, submitText, editUser }
 
     <label>Name: <br/>
       <input 
+        className = 'standard-input' 
         type = 'text'
         name = 'name'
         value = {formData.name}
@@ -33,6 +36,7 @@ const UserForm = ({ formData, handleChange, handleSubmit, submitText, editUser }
 
     <label>Image URL: <br/>
       <input 
+        className = 'standard-input' 
         type = 'text'
         name = 'img_url'
         value = {formData.img_url}
