@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { handleReadLocation } from '../handleDateTimeLocation'
+import { handleReadLocation, handleRenderLocation } from '../handleDateTimeLocation'
 
 class MapContainer extends Component {
 
@@ -24,20 +24,22 @@ class MapContainer extends Component {
   }
 
   render() {
-    return (
-      <div>
-        {
-          this.props.location ?
-            <iframe
-              width="100%"
-              frameBorder="0" style={{border:0, height:'92vh'}}
-              src={this.makeLocationQuery(handleReadLocation(this.props.location))}>
-            </iframe>
-          : 
-            'Map could not be loaded for this location.'
-        }
-      </div>
-    )
+    if (!this.props.location) {
+      return (
+        <div>
+          Map could not be loaded for this location.
+        </div>
+      )
+    } else {
+      return (
+        <iframe
+          title={`embedded map - ${handleRenderLocation(this.props.location)}`}
+          width="100%"
+          frameBorder="0" style={{border:0, height:'92vh'}}
+          src={this.makeLocationQuery(handleReadLocation(this.props.location))}>
+        </iframe>
+      )    
+    }
   }
 }
 

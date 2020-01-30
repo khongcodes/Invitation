@@ -54,7 +54,6 @@ class EditUserContainer extends Component {
           <>{
             this.props.user.status === 'form error' ? <h4>Authorization failed - try entering the password again.</h4> : <></>
           }</>
-          <h4></h4>
           <UserForm 
             formData = {this.state}
             handleChange = {this.handleChange}

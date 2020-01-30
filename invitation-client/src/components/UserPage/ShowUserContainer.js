@@ -40,7 +40,7 @@ class ShowUserContainer extends Component {
     } else {
       return (
         <div className='User'>
-          <p><img className='image' src={img_url}/></p>
+          <p><img className='image' src={img_url} alt={username} /></p>
           <h2 className='name'>{name}</h2>
           <p className='username'>Username: {username}</p>
           
