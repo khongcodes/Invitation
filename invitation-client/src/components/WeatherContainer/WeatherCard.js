@@ -17,23 +17,33 @@ export default class WeatherCard extends Component {
   }
 
   componentDidMount() {
+    this.mounted = true;
+    
     const location = this.props.location.location;
     const requestedDate = convertCompiledDateTime(this.props.date, this.props.time);
+
     fetch(`http://api.openweathermap.org/data/2.5/forecast?lat=${location.lat}&lon=${location.lng}&units=imperial&appid=dda49875568dbde96bc7c0d0a91a7d81`)
     .then(resp => resp.json())
     .then(data => {
-      console.log(data)
-      const closestDate = data.list.map(t => t.dt*1000).sort((a,b) => (a-requestedDate) - (b-requestedDate))[0];
-      const closestForecast = data.list[data.list.findIndex(item => item.dt === closestDate/1000)];
-      this.setState(previousState => ({
-        cityName: data.city.name,
-        closestDate: closestDate, 
-        closestForecast: {
-          ...previousState.closestForecast,
-          ...closestForecast
-        },
-      }))
+      if (this.mounted) {
+
+        const closestDate = data.list.map(t => t.dt*1000).sort((a,b) => Math.abs(a-requestedDate) - Math.abs(b-requestedDate))[0];
+        const closestForecast = data.list[data.list.findIndex(item => item.dt === closestDate/1000)];
+        this.setState(previousState => ({
+          cityName: data.city.name,
+          closestDate: closestDate, 
+          closestForecast: {
+            ...previousState.closestForecast,
+            ...closestForecast
+          }
+        }))
+
+      }
     })
+  }
+
+  componentWillUnmount() {
+    this.mounted = false;
   }
 
   listWeatherConditions = (weatherArray) => (
