@@ -6,21 +6,22 @@ import WeatherCard from './WeatherCard';
 
 class WeatherContainer extends Component {
   
+  // state is kept in WeatherCard - in order to do async fetching on componentDidMount,
+  // event needs to be loaded from store in a container and passed to child as a prop
+  // console.log(this.props) on componentDidMount will show that event is undefined
+  // proof below
+
   // componentDidMount() {
-  //   const location = handleReadLocation(this.props.event.data.location);
-  //   console.log(this.props)
-  //   if (location.location) {
-  //     console.log('worked')
+  //   if (this.props.event.data.location) {
+  //     console.log('event loaded')
+  //   } else {
+  //     console.log('event not loaded')
   //   }
-  //   fetch('https://api.weather.gov/points/39.7456,-97.0892')
-  //   .then(response => response.json())
-  //   .then(data => {
-  //     console.log(data);
-  //   })
+
+  //   console.log(this.props.event.data.location)
   // }
-  
+
   render() {
-    // console.log(handleReadLocation(this.props.event.data.location))
     if (typeof handleReadLocation(this.props.event.data.location) === 'object') {
       return (
         <WeatherCard 
