@@ -8,7 +8,7 @@ class MapContainer extends Component {
   makeLocationQuery = (processedLocation) => {
     let useLocation, queryMode, query; 
     const googleApiUrl = 'https://www.google.com/maps/embed/v1/';
-    const apiParams = '?key=AIzaSyCR56nlJdP92vesegyf8bXWkq-6uo9-Nyo&';
+    const apiParams = `?key=${process.env.REACT_APP_GOOGLE_MAPS_KEY}&`;
 
     if (typeof processedLocation !== 'string') {
       useLocation = processedLocation.place_id;

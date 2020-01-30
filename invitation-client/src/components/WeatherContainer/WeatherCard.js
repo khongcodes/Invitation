@@ -22,8 +22,7 @@ export default class WeatherCard extends Component {
     
     const location = this.props.location.location;
     const requestedDate = convertCompiledDateTime(this.props.date, this.props.time);
-
-    fetch(`http://api.openweathermap.org/data/2.5/forecast?lat=${location.lat}&lon=${location.lng}&units=imperial&appid=dda49875568dbde96bc7c0d0a91a7d81`)
+    fetch(`http://api.openweathermap.org/data/2.5/forecast?lat=${location.lat}&lon=${location.lng}&units=imperial&appid=${process.env.REACT_APP_WEATHER_API_KEY}`)
     .then(resp => resp.json())
     .then(data => {
       if (this.mounted) {
