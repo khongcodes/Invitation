@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import { handleRenderDate, handleRenderTime, handleRenderLocation } from '../handleDateTimeLocation';
 import { getEvent, clearEvent } from '../../actions/eventActions';
+import EventPage from './EventPage';
 import '../../style/Event.css'
 
 class EventPageContainer extends Component {
@@ -27,21 +28,14 @@ class EventPageContainer extends Component {
     } else {
       return (
         <>
-          <h2 className='event-title'>
-            {title || 'untitled event'}
-          </h2>
-          
-          <p>Description:</p>
-          <p className='event-description'>
-            {description || 'none'}
-          </p>
-          
-          <p>Location: {handleRenderLocation(location)}</p>
-          <p>Date: {handleRenderDate(date)}</p>
-          <p>Time: {handleRenderTime(time)}</p>
-          <p>User:{' '}
-            {!!user ? <Link to={`/user/${user.id}`}>{ user.name }</Link> : 'none'}
-          </p>
+          <EventPage 
+            title = {title || 'unititled event'}
+            description = {description || 'none'}
+            location = {handleRenderLocation(location)}
+            date = {handleRenderDate(date)}
+            time = {handleRenderTime(time)}
+            user = {!!user ? <Link to={`/user/${user.id}`}>{ user.name }</Link> : 'none'}
+          />
           
           {/* if authorized display edit button */}
           <>
