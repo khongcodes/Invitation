@@ -22,6 +22,7 @@ class App extends Component {
     this.props.loginStatus()
   }
 
+
   render() {
     const userIsLoaded = Object.entries(this.props.session.data).length === 0;
 

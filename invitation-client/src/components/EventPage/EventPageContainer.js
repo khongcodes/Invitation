@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import { handleRenderDate, handleRenderTime, handleRenderLocation } from '../handleDateTimeLocation';
 import { getEvent, clearEvent } from '../../actions/eventActions';
-import EventPage from './EventPage';
+import EventPage from './EventPageClass';
 import '../../style/Event.css'
 
 class EventPageContainer extends Component {
